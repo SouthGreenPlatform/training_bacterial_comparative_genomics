@@ -1,0 +1,2 @@
+# training_bacterial_comparative_genomics
+Trainings for Bacterial Comparative Genomics
