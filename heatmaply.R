@@ -1,3 +1,5 @@
+#!/usr/bin/R
+
 library("optparse")
 library(heatmaply)
 
@@ -20,5 +22,5 @@ if (is.null(opt$out)){
   stop("At least one argument must be supplied (out file).\n", call.=FALSE)
 }
 
-mydata <- read.table(opt$file,sep="\t",fill=TRUE)
-heatmaply(mydata,file = "heatmaply.html",scale_fill_gradient_fun = ggplot2::scale_fill_gradient2( low = "white" , mid="#E7E4EA", high = "#471777", limits = c(0, 1)))
+mydata <- read.table(opt$file,sep="\t",fill=TRUE,header=TRUE, row.names = 1)
+heatmaply(mydata,file = "heatmaply.html",plot_method="plotly",scale_fill_gradient_fun = ggplot2::scale_fill_gradient2( low = "white" , high = "blue", limits = c(0, 100)))
