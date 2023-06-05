@@ -5,15 +5,20 @@
 First create your working environment:
 
 ```bash
-mkdir -p ~/training_bacterial_comparative_genomics
-cd ~/training_bacterial_comparative_genomics
-mkdir assembly
-mkdir raw_data
+mkdir -p ~/training_bcg
+cd ~/training_bcg
 ```
 
-Now let's download some raw data:
+We can now download the git repository of this training that contains material needed for the training.
 
 ```bash
+git clone https://github.com/SouthGreenPlatform/training_bacterial_comparative_genomics.git
+```
+
+We also need some raw data:
+
+```bash
+mkdir raw_data
 cd raw_data
 wget http://bioinfo-web.mpl.ird.fr/ideogram/CIX4108.sample.fastq.gz
 ```
@@ -29,6 +34,13 @@ wget http://bioinfo-web.mpl.ird.fr/ideogram/CIX4108.sample.fastq.gz
 
 ## Genome Assembly (from Oxford Nanopore Technologies (ONT) long reads) (using Flye)
 
+We start by creating and moving into a directory dedicated for the task:
+
+```bash
+mkdir -p ~/training_bcg/assembly
+cd ~/training_bcg/assembly
+```
+
 We will use Flye to perform the genome assembly. Let's start by installing the tool:
 
 ```bash
@@ -42,205 +54,254 @@ We can now run the assembly
 flye --nano-raw /data2/formation/Bacterial_genomics/raw_data/CIX4108.sample.fastq -o assembly >>flye.log 2>&1
 ```
 
-The assembly can be very long 
+As this task is time consuming we can stop the tool with `CTRL-C` and download the expected output:
 
 ```bash
-cp -rf ../data/precomputed_assembly/assembly_precomputed.fasta assembly
-     
+cp -rf ~/training_bcg/training_bacterial_comparative_genomics/data/precomputed_assembly/assembly_precomputed.fasta assembl .
+```
 
-grep -c ">" assembly/assembly_precomputed.fasta
+!!! question
+        How many sequence do we have?
+
+??? example "Solution"
+    ```bash
+    grep -c ">" assembly_precomputed.fasta
+    ```
+
      
 
 ## Separate chromosomal and plasmid scaffolds (using MOB-Suite)
 
-singularity exec /home/jovyan/mob_suite_3.0.3.sif mob_recon -i assembly/assembly_precomputed.fasta -o assembly.mob_recon >>mob_recon.log 2>&1
-     
+Let's start by creating and moving into a directory dedicated for the task:
 
-cp -rf ../data/mob_recon assembly.mob_recon
-     
-(base) 
-
-ls assembly.mob_recon
-     
-chromosome.fasta  contig_report.txt  mobtyper_results.txt  plasmid_AD399.fasta
-
-more assembly.mob_recon/contig_report.txt
-
-```     
-sample_id	molecule_type	primary_cluster_id	secondary_cluster_id	contig_id	size	gc	md5	circularity_status	rep_type(s)	rep_type_accession(s)	relaxase_type(s)	relaxase_type_accession(s)	mpf_type	mpf_type_accession(s)	orit_type(s)	orit_accession(s)	predicted_mobility	mash_nearest_neighbor	mash_neighbor_distance	mash_neighbor_identification	repetitive_dna_id	repetitive_dna_type	filtering_reason
-assembly_precomputed	chromosome	-	-	contig_1_circular_rotated	4682534	63.833983907004196	cf955654136e9041810a80b8191fa41f	not tested	-	-	MOBP	NC_007507_00032	-	-	-	-	-	-	-	-	-	-	-
-assembly_precomputed	plasmid	AD399	-	contig_2_circular_rotated	69058	61.861044339540676	475037e138b4ade1836aa05f421c47b8	not tested	rep_cluster_1289	000607__CP000620_00033	MOBP	CP022994_00148	-	-	-	-	-	CP033195	0.0537328	Xanthomonas oryzae pv. oryzae	-	-	-
+```bash
+mkdir -p ~/training_bcg/mob_recon
+cd ~/training_bcg/mob_recon
 ```
+
+```
+singularity exec /home/jovyan/mob_suite_3.0.3.sif mob_recon -i assembly/assembly_precomputed.fasta -o assembly.mob_recon >>mob_recon.log 2>&1
+```     
+
+The precomputed result can be retrieved here
+
+```bash
+cp -rf ~/training_bcg/training_bacterial_comparative_genomics/data/mob_recon/* .
+```
+     
+The results is made by 4 files `chromosome.fasta  contig_report.txt  mobtyper_results.txt  plasmid_AD399.fasta`
+
+We can have a look at the report:
+
+```
+more contig_report.txt
+```
+
+??? example "Solution"  
+        sample_id	molecule_type	primary_cluster_id	secondary_cluster_id	contig_id	size	gc	md5	circularity_status	rep_type(s)	rep_type_accession(s)	relaxase_type(s)	relaxase_type_accession(s)	mpf_type	mpf_type_accession(s)	orit_type(s)	orit_accession(s)	predicted_mobility	mash_nearest_neighbor	mash_neighbor_distance	mash_neighbor_identification	repetitive_dna_id	repetitive_dna_type	filtering_reason
+        assembly_precomputed	chromosome	-	-	contig_1_circular_rotated	4682534	63.833983907004196	cf955654136e9041810a80b8191fa41f	not tested	-	-	MOBP	NC_007507_00032	-	-	-	-	-	-	-	-	-	-	-
+        assembly_precomputed	plasmid	AD399	-	contig_2_circular_rotated	69058	61.861044339540676	475037e138b4ade1836aa05f421c47b8	not tested	rep_cluster_1289	000607__CP000620_00033	MOBP	CP022994_00148	-	-	-	-	-	CP033195	0.0537328	Xanthomonas oryzae pv. oryzae	-	-	-
+
 
 ## Genome annotation (using Prokka)
 
-conda create -n prokka -c conda-forge -c bioconda prokka
-     
+We will now annotate the chromosome.
+Let's start by creating and moving into a directory dedicated for the task:
 
-conda activate prokka
-     
-(prokka) 
-
-prokka assembly.mob_recon/chromosome.fasta --prefix assembly --force --outdir prokka_out >>prokka.log 2>&1
-     
-(prokka) 
-
-conda deactivate
-     
-(base) 
-
-head -40 prokka_out/assembly.gbk
-
-```     
-LOCUS       contig_1_circular_rotated4682534 bp   DNA  linear       10-JUN-2022
-DEFINITION  Genus species strain strain.
-ACCESSION   
-VERSION
-KEYWORDS    .
-SOURCE      Genus species
-  ORGANISM  Genus species
-            Unclassified.
-COMMENT     Annotated using prokka 1.14.6 from
-            https://github.com/tseemann/prokka.
-FEATURES             Location/Qualifiers
-     source          1..4682534
-                     /organism="Genus species"
-                     /mol_type="genomic DNA"
-                     /strain="strain"
-     CDS             1..1329
-                     /gene="dnaA"
-                     /locus_tag="GBGACGDJ_00001"
-                     /inference="ab initio prediction:Prodigal:002006"
-                     /inference="similar to AA sequence:UniProtKB:P03004"
-                     /codon_start=1
-                     /transl_table=11
-                     /product="Chromosomal replication initiator protein DnaA"
-                     /db_xref="COG:COG0593"
-                     /translation="MDAWPRCLERLEAEFPPEDVHTWLKPLQAEDRGDSIVLYAPNAF
-                     IVDQVRERYLPRIRELLAYFAGNREVALAVGSRPRAPEPEPAPVAATIAPQAAPIAPF
-                     AGNLDSHYTFANFVEGRSNQLGLAAAIQAAQKPGDRAHNPLLLYGSTGLGKTHLMFAA
-                     GNALRQAKPAAKVMYLRSEQFFSAMIRALQDKAMDQFKRQFQQIDALLIDDIQFFAGK
-                     DRTQEEFFHTFNALFDGRQQIILTCDRYPREVEGLEPRLKSRLAWGLSVAIDPPDFET
-                     RAAIVLAKARERGAEIPDDVAFLIAKKMRSNVRDLEGALNTLVARANFTGRSITVEFA
-                     QETLRDLLRAQQQAIGIPNIQKTVADYYGLQMKDLLSKRRTRSLARPRQVAMALAKEL
-                     TEHSLPEIGDAFAGRDHTTVLHACRQIRTLMEADGKLREDWEKLIRKLSE"
-     CDS             1607..2389
-                     /gene="dnaN_1"
-                     /locus_tag="GBGACGDJ_00002"
-                     /inference="ab initio prediction:Prodigal:002006"
-                     /inference="similar to AA sequence:UniProtKB:Q9I7C4"
-                     /codon_start=1
-                     /transl_table=11
-                     /product="Beta sliding clamp"
+```bash
+mkdir -p ~/training_bcg/prokka
+cd ~/training_bcg/prokka
+ln -s ~/training_bcg/mob_recon/chromosome.fasta
 ```
+
+We will use Prokka to perform the genome annotation. Let's start by installing the tool:
+
+```bash
+conda create -n prokka -c conda-forge -c bioconda prokka
+conda activate prokka
+```
+
+We can now launch the annotation: 
+
+```bash
+prokka chromosome.fasta --prefix assembly --force --outdir prokka_out >> prokka.log 2>&1
+```
+     
+You can now deactivate the prokka conda environment
+
+```bash
+conda deactivate
+```
+     
+Let's have a look at the Genebank output file:
+
+```bash
+head -40 prokka_out/assembly.gbk
+```
+
+??? example "Solution"    
+        LOCUS       contig_1_circular_rotated4682534 bp   DNA  linear       10-JUN-2022
+        DEFINITION  Genus species strain strain.
+        ACCESSION   
+        VERSION
+        KEYWORDS    .
+        SOURCE      Genus species
+        ORGANISM  Genus species
+                    Unclassified.
+        COMMENT     Annotated using prokka 1.14.6 from
+                    https://github.com/tseemann/prokka.
+        FEATURES             Location/Qualifiers
+            source          1..4682534
+                            /organism="Genus species"
+                            /mol_type="genomic DNA"
+                            /strain="strain"
+            CDS             1..1329
+                            /gene="dnaA"
+                            /locus_tag="GBGACGDJ_00001"
+                            /inference="ab initio prediction:Prodigal:002006"
+                            /inference="similar to AA sequence:UniProtKB:P03004"
+                            /codon_start=1
+                            /transl_table=11
+                            /product="Chromosomal replication initiator protein DnaA"
+                            /db_xref="COG:COG0593"
+                            /translation="MDAWPRCLERLEAEFPPEDVHTWLKPLQAEDRGDSIVLYAPNAF
+                            IVDQVRERYLPRIRELLAYFAGNREVALAVGSRPRAPEPEPAPVAATIAPQAAPIAPF
+                            AGNLDSHYTFANFVEGRSNQLGLAAAIQAAQKPGDRAHNPLLLYGSTGLGKTHLMFAA
+                            GNALRQAKPAAKVMYLRSEQFFSAMIRALQDKAMDQFKRQFQQIDALLIDDIQFFAGK
+                            DRTQEEFFHTFNALFDGRQQIILTCDRYPREVEGLEPRLKSRLAWGLSVAIDPPDFET
+                            RAAIVLAKARERGAEIPDDVAFLIAKKMRSNVRDLEGALNTLVARANFTGRSITVEFA
+                            QETLRDLLRAQQQAIGIPNIQKTVADYYGLQMKDLLSKRRTRSLARPRQVAMALAKEL
+                            TEHSLPEIGDAFAGRDHTTVLHACRQIRTLMEADGKLREDWEKLIRKLSE"
+            CDS             1607..2389
+                            /gene="dnaN_1"
+                            /locus_tag="GBGACGDJ_00002"
+                            /inference="ab initio prediction:Prodigal:002006"
+                            /inference="similar to AA sequence:UniProtKB:Q9I7C4"
+                            /codon_start=1
+                            /transl_table=11
+                            /product="Beta sliding clamp"
+
+
+Now let's have a look at the GFF output file:
 
 ```bash
 head -10 prokka_out/assembly.gff
 ```
 
-```     
-##gff-version 3
-##sequence-region contig_1_circular_rotated 1 4682534
-contig_1_circular_rotated	Prodigal:002006	CDS	1	1329	.	+	0	ID=GBGACGDJ_00001;Name=dnaA;db_xref=COG:COG0593;gene=dnaA;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P03004;locus_tag=GBGACGDJ_00001;product=Chromosomal replication initiator protein DnaA
-contig_1_circular_rotated	Prodigal:002006	CDS	1607	2389	.	+	0	ID=GBGACGDJ_00002;Name=dnaN_1;db_xref=COG:COG0592;gene=dnaN_1;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:Q9I7C4;locus_tag=GBGACGDJ_00002;product=Beta sliding clamp
-contig_1_circular_rotated	Prodigal:002006	CDS	2346	2708	.	+	0	ID=GBGACGDJ_00003;Name=dnaN_2;db_xref=COG:COG0592;gene=dnaN_2;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A988;locus_tag=GBGACGDJ_00003;product=Beta sliding clamp
-contig_1_circular_rotated	Prodigal:002006	CDS	3777	4883	.	+	0	ID=GBGACGDJ_00004;Name=recF;db_xref=COG:COG1195;gene=recF;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A7H0;locus_tag=GBGACGDJ_00004;product=DNA replication and repair protein RecF
-contig_1_circular_rotated	Prodigal:002006	CDS	4999	7443	.	+	0	ID=GBGACGDJ_00005;eC_number=5.6.2.2;Name=gyrB;db_xref=COG:COG0187;gene=gyrB;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A2I3;locus_tag=GBGACGDJ_00005;product=DNA gyrase subunit B
-contig_1_circular_rotated	Prodigal:002006	CDS	7511	8347	.	+	0	ID=GBGACGDJ_00006;inference=ab initio prediction:Prodigal:002006;locus_tag=GBGACGDJ_00006;product=hypothetical protein
-contig_1_circular_rotated	Prodigal:002006	CDS	8579	9340	.	+	0	ID=GBGACGDJ_00007;eC_number=3.4.-.-;Name=bepA_1;gene=bepA_1;inference=ab initio prediction:Prodigal:002006,protein motif:HAMAP:MF_00997;locus_tag=GBGACGDJ_00007;product=Beta-barrel assembly-enhancing protease
-contig_1_circular_rotated	Prodigal:002006	CDS	9617	10810	.	+	0	ID=GBGACGDJ_00008;inference=ab initio prediction:Prodigal:002006;locus_tag=GBGACGDJ_00008;product=hypothetical protein
-(prokka) 
-```
+??? example "Solution"  
+        ##gff-version 3
+        ##sequence-region contig_1_circular_rotated 1 4682534
+        contig_1_circular_rotated	Prodigal:002006	CDS	1	1329	.	+	0	ID=GBGACGDJ_00001;Name=dnaA;db_xref=COG:COG0593;gene=dnaA;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P03004;locus_tag=GBGACGDJ_00001;product=Chromosomal replication initiator protein DnaA
+        contig_1_circular_rotated	Prodigal:002006	CDS	1607	2389	.	+	0	ID=GBGACGDJ_00002;Name=dnaN_1;db_xref=COG:COG0592;gene=dnaN_1;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:Q9I7C4;locus_tag=GBGACGDJ_00002;product=Beta sliding clamp
+        contig_1_circular_rotated	Prodigal:002006	CDS	2346	2708	.	+	0	ID=GBGACGDJ_00003;Name=dnaN_2;db_xref=COG:COG0592;gene=dnaN_2;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A988;locus_tag=GBGACGDJ_00003;product=Beta sliding clamp
+        contig_1_circular_rotated	Prodigal:002006	CDS	3777	4883	.	+	0	ID=GBGACGDJ_00004;Name=recF;db_xref=COG:COG1195;gene=recF;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A7H0;locus_tag=GBGACGDJ_00004;product=DNA replication and repair protein RecF
+        contig_1_circular_rotated	Prodigal:002006	CDS	4999	7443	.	+	0	ID=GBGACGDJ_00005;eC_number=5.6.2.2;Name=gyrB;db_xref=COG:COG0187;gene=gyrB;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A2I3;locus_tag=GBGACGDJ_00005;product=DNA gyrase subunit B
+        contig_1_circular_rotated	Prodigal:002006	CDS	7511	8347	.	+	0	ID=GBGACGDJ_00006;inference=ab initio prediction:Prodigal:002006;locus_tag=GBGACGDJ_00006;product=hypothetical protein
+        contig_1_circular_rotated	Prodigal:002006	CDS	8579	9340	.	+	0	ID=GBGACGDJ_00007;eC_number=3.4.-.-;Name=bepA_1;gene=bepA_1;inference=ab initio prediction:Prodigal:002006,protein motif:HAMAP:MF_00997;locus_tag=GBGACGDJ_00007;product=Beta-barrel assembly-enhancing protease
+        contig_1_circular_rotated	Prodigal:002006	CDS	9617	10810	.	+	0	ID=GBGACGDJ_00008;inference=ab initio prediction:Prodigal:002006;locus_tag=GBGACGDJ_00008;product=hypothetical protein
+
 
 ```bash
 grep COG prokka_out/assembly.gff | head -5
 ```
 
-  
-    contig_1_circular_rotated	Prodigal:002006	CDS	1	1329	.	+	0	ID=GBGACGDJ_00001;Name=dnaA;db_xref=COG:COG0593;gene=dnaA;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P03004;locus_tag=GBGACGDJ_00001;product=Chromosomal replication initiator protein DnaA
-    contig_1_circular_rotated	Prodigal:002006	CDS	1607	2389	.	+	0	ID=GBGACGDJ_00002;Name=dnaN_1;db_xref=COG:COG0592;gene=dnaN_1;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:Q9I7C4;locus_tag=GBGACGDJ_00002;product=Beta sliding clamp
-    contig_1_circular_rotated	Prodigal:002006	CDS	2346	2708	.	+	0	ID=GBGACGDJ_00003;Name=dnaN_2;db_xref=COG:COG0592;gene=dnaN_2;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A988;locus_tag=GBGACGDJ_00003;product=Beta sliding clamp
-    contig_1_circular_rotated	Prodigal:002006	CDS	3777	4883	.	+	0	ID=GBGACGDJ_00004;Name=recF;db_xref=COG:COG1195;gene=recF;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A7H0;locus_tag=GBGACGDJ_00004;product=DNA replication and repair protein RecF
-    contig_1_circular_rotated	Prodigal:002006	CDS	4999	7443	.	+	0	ID=GBGACGDJ_00005;eC_number=5.6.2.2;Name=gyrB;db_xref=COG:COG0187;gene=gyrB;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A2I3;locus_tag=GBGACGDJ_00005;product=DNA gyrase subunit B
-    grep: write error: Broken pipe
-    (prokka) 
+??? example "Solution"  
+        contig_1_circular_rotated	Prodigal:002006	CDS	1	1329	.	+	0	ID=GBGACGDJ_00001;Name=dnaA;db_xref=COG:COG0593;gene=dnaA;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P03004;locus_tag=GBGACGDJ_00001;product=Chromosomal replication initiator protein DnaA
+        contig_1_circular_rotated	Prodigal:002006	CDS	1607	2389	.	+	0	ID=GBGACGDJ_00002;Name=dnaN_1;db_xref=COG:COG0592;gene=dnaN_1;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:Q9I7C4;locus_tag=GBGACGDJ_00002;product=Beta sliding clamp
+        contig_1_circular_rotated	Prodigal:002006	CDS	2346	2708	.	+	0	ID=GBGACGDJ_00003;Name=dnaN_2;db_xref=COG:COG0592;gene=dnaN_2;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A988;locus_tag=GBGACGDJ_00003;product=Beta sliding clamp
+        contig_1_circular_rotated	Prodigal:002006	CDS	3777	4883	.	+	0	ID=GBGACGDJ_00004;Name=recF;db_xref=COG:COG1195;gene=recF;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A7H0;locus_tag=GBGACGDJ_00004;product=DNA replication and repair protein RecF
+        contig_1_circular_rotated	Prodigal:002006	CDS	4999	7443	.	+	0	ID=GBGACGDJ_00005;eC_number=5.6.2.2;Name=gyrB;db_xref=COG:COG0187;gene=gyrB;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A2I3;locus_tag=GBGACGDJ_00005;product=DNA gyrase subunit B
+
 
 
 ## GC content analysis (SkewIT)
+
+
+We will now use SkewIT for analyzing GC Skew.
+Let's start by creating and moving into a directory dedicated for the task:
+
+```bash
+mkdir -p ~/training_bcg/skewit
+cd ~/training_bcg/skewit
+ln -s ~/training_bcg/mob_recon/chromosome.fasta
+```
+
+We will use SkewIT for analyzing GC Skew. Let's start by installing the tool:
+
 
 ```bash
 git clone https://github.com/jenniferlu717/SkewIT.git
 ```
 
+We can now run the analysis:
+
 ```bash
-python SkewIT/src/gcskew.py -i assembly.mob_recon/chromosome.fasta -o gcskew.txt -k 500
+python SkewIT/src/gcskew.py -i chromosome.fasta -o gcskew.txt -k 500
 ```
 
+Let's have a look at the result:
+
+```bash
 head -5 gcskew.txt
-     
-Sequence	Index	GC Skew (0kb)
-contig_1_circular_rotated	0	-0.05952381
-contig_1_circular_rotated	500	0.00958466
-contig_1_circular_rotated	1000	-0.00327869
-contig_1_circular_rotated	1500	-0.01010101
-(base) 
+```
 
-grep -v 'Sequence' gcskew.txt | awk {'print "Chr "2+5000" "$3'}  >gcskew.circos.txt
-     
-(base) 
+??? example "Solution"      
+        Sequence	Index	GC Skew (0kb)
+        contig_1_circular_rotated	0	-0.05952381
+        contig_1_circular_rotated	500	0.00958466
+        contig_1_circular_rotated	1000	-0.00327869
+        contig_1_circular_rotated	1500	-0.01010101
 
+
+XXX
+
+```bash
+grep -v 'Sequence' gcskew.txt | awk {'print "Chr "2+5000" "$3'}  > gcskew.circos.txt
+```     
+
+```bash
 awk {'if (3 == "CDS" && 7 == "+")print "Chr "5'} prokka_out/assembly.gff >genes_plus.txt
 awk {'if (3 == "CDS" && 7 == "-")print "Chr "5'} prokka_out/assembly.gff >genes_minus.txt
+```
      
 ## Visualize genome annotation (using Circos)
 
 Install Circos in the terminal by typing these commands
 
+```bash
 git clone https://github.com/vigsterkr/circos.git
-
 cd circos
-
 ./install-unix
+```
 
-
+XXX?
+```bash
 echo "chr - Chr 1 0 4600000 black" >karyotype.txt
-     
-(base) 
+```     
 
+```
 cp -rf ../data/circos1.conf /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos/circos1.conf
-     
-Edit the Circos configuration file (circos1.conf) to adapt and customize your Circos image
+``` 
 
+Edit the Circos configuration file (circos1.conf) to adapt and customize your Circos image
+```bash
 cd /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos
 bin/circos -conf circos1.conf
-     
-(base) debug: using configuration file input /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos_test.conf
-debuglib: using configuration input /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos_test.conf
-debuglib: loading configuration from file /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos_test.conf
-debugload: using file from argument /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos_test.conf
-debugfile: looking for configuration file /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos_test.conf
-debugfile: found configuration file /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos_test.conf
-zoomregion ideogram 0 chr Chr         0   4600000 scale  1.00 absolutescale  1.00
-registering tag Chr
-ideogramspacing Chr Chr Chr Chr 115.000025
-ideogramreport   0   Chr   0   Chr      0.000   4600.000   4600.001       0.000       0.000 r 1350 1340 1350 10
-drawing ticks Chr radius 1350 type absolute spacing 100000
-drawing ticks Chr radius 1350 type absolute spacing 10000
-drawing plot type line at z-depth 0
-created image at ./circos.png
-(base) 
+```     
 
 ```bash
 cp -rf circos.png circos1.png
 ```
 
+XXX?
 ```bash 
 cd /home/jovyan/training_bacterial_comparative_genomics/jupyter
 ```
 
 ![](images/circos1.svg)
 
-Follow the same process to include a new track for tRNA in your Circos
+!!! question "Exercice"
+        Follow the same process to include a new track for tRNA in your Circos
 
 ## Retrieve public genomes available for comparison
 
