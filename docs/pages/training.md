@@ -308,8 +308,9 @@ cd /home/jovyan/training_bacterial_comparative_genomics/jupyter
 
 Public genomes can be retrived using NCBI : https://www.ncbi.nlm.nih.gov/datasets/genomes/
 
-!!! question "Exercice"
-        How many public genomes of Xanthomonas oryzae have been released in Genbank? How many genomes are complete?
+!!! question "Questions"
+        How many public genomes of Xanthomonas oryzae have been released in Genbank? 
+        How many genomes are complete?
 
 Alternatively, one can use the remote file to explore Genbank genome releases.
 https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt
@@ -317,15 +318,17 @@ https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt
 Using the wget command, retrieve the prokaryotes.txt file hosted at NCBI.
 
 
-!!! question "Exercice"
+!!! question "Questions"
         How many public genomes of Xanthomonas oryzae have been released in Genbank? How many genomes are complete?
 
-wget https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt
-     
+??? example "Solution"
+    ```bash
+    wget https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt
+    ```
 
-grep "Xanthomonas oryzae pv. oryzae" prokaryotes.txt | grep -c 'chromosome:'
-     
-95
+    ```bash
+    grep "Xanthomonas oryzae pv. oryzae" prokaryotes.txt | grep -c 'chromosome:'
+    ```
 
 grep "Xanthomonas oryzae pv. oryzicola" prokaryotes.txt | grep -c 'chromosome:'
      
