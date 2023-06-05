@@ -1,0 +1,54 @@
+# conda env create -f conda_env.yml
+name: education
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bzip2
+  - ca-certificates
+  - certifi
+  - libffi
+  - ncurses
+  - openssl
+  - pip
+  - python
+  - readline
+  - setuptools
+  - sqlite
+  - tk
+  - tzdata
+  - wheel
+  - xz
+  - zlib
+  - pip:
+      - charset-normalizer
+      - click
+      - colorama
+      - csscompressor
+      - ghp-import
+      - htmlmin
+      - idna
+      - jinja2
+      - jsmin
+      - markdown
+      - markupsafe
+      - mergedeep
+      - mkdocs
+      - mkdocs-macros-plugin
+      - mkdocs-material
+      - mkdocs-material-extensions
+      - mkdocs-minify-plugin
+      - packaging
+      - pygments
+      - pymdown-extensions
+      - python-dateutil
+      - pyyaml
+      - pyyaml-env-tag
+      - regex
+      - requests
+      - six
+      - termcolor
+      - urllib3
+      - watchdog
+
