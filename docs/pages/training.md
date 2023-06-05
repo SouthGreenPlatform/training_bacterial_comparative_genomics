@@ -2,65 +2,49 @@
 
 ## First commands
 
+First create your working environment:
+
 ```bash
-cd /home/jovyan/training_bacterial_comparative_genomics/jupyter
+mkdir -p ~/training_bacterial_comparative_genomics
+cd ~/training_bacterial_comparative_genomics
+mkdir assembly
+mkdir raw_data
 ```
 
-ls
-     
-Trainings_genomics_june2022.ipynb
-(base) 
+Now let's download some raw data:
 
-mkdir assembly
-     
-(base) 
-
-ls
-     
-assembly  Trainings_genomics_june2022.ipynb
-
-mkdir raw_data
-     
-(base) 
-
+```bash
+cd raw_data
 wget http://bioinfo-web.mpl.ird.fr/ideogram/CIX4108.sample.fastq.gz
+```
      
---2022-06-13 13:13:53--  http://bioinfo-web.mpl.ird.fr/ideogram/CIX4108.sample.fastq.gz
-Resolving bioinfo-web.mpl.ird.fr (bioinfo-web.mpl.ird.fr)... 91.203.35.161
-Connecting to bioinfo-web.mpl.ird.fr (bioinfo-web.mpl.ird.fr)|91.203.35.161|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 253558784 (242M) [application/x-gzip]
-Saving to: ‘CIX4108.sample.fastq.gz’
 
-CIX4108.sample.fast 100%[===================>] 241.81M  10.8MB/s    in 20s     
+!!! question
+        How many reads are there in the raw Fastq file?
 
-2022-06-13 13:14:13 (11.9 MB/s) - ‘CIX4108.sample.fastq.gz’ saved [253558784/253558784]
-
-(base) 
-
-mv CIX4108.sample.fastq.gz raw_data
-     
-(base) 
-How many reads are there in the raw Fastq file?
-
-zcat raw_data/CIX4108.sample.fastq.gz | wc -l
-     
-gzip: raw_data/CIX4108.sample.fastq.gz: unexpected end of file
-68057
+??? example "Solution"
+    ```bash
+    zcat raw_data/CIX4108.sample.fastq.gz | wc -l
+    ```
 
 ## Genome Assembly (from Oxford Nanopore Technologies (ONT) long reads) (using Flye)
 
+We will use Flye to perform the genome assembly. Let's start by installing the tool:
+
 ```bash
 conda create -n flye -c bioconda flye
-```
-
-```
 conda activate flye
-```     
+```
 
+We can now run the assembly   
+
+```bash
 flye --nano-raw /data2/formation/Bacterial_genomics/raw_data/CIX4108.sample.fastq -o assembly >>flye.log 2>&1
-     
+```
 
+The assembly can be very long 
+
+```bash
 cp -rf ../data/precomputed_assembly/assembly_precomputed.fasta assembly
      
 
