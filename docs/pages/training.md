@@ -308,6 +308,8 @@ cd /home/jovyan/training_bacterial_comparative_genomics/jupyter
 
 Public genomes can be retrived using NCBI : https://www.ncbi.nlm.nih.gov/datasets/genomes/
 
+!!! question "Exercice"
+        How many public genomes of Xanthomonas oryzae have been released in Genbank? How many genomes are complete?
 
 wget https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt
      
