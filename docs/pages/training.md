@@ -519,13 +519,14 @@ Check that genomes are closer within the same pathovar than between pathovars.
     ```bash
     more fastani.out.matrix 
     ```
-    > 6
-    > Xoc_GCA_000940825.fna
-    > Xoc_GCA_001021915.fna	99.149597
-    > Xoc_GCA_001042835.fna	99.411034	99.196701
-    > Xoo_GCA_001929235.fna	97.226959	97.219826	97.288483
-    > Xoo_GCA_004136375.fna	97.313660	97.230530	97.365417	99.582520
-    > Xoo_GCA_004355825.fna	97.236938	97.235214	97.313324	99.704956	99.590271
+    
+    > 6  
+    > Xoc_GCA_000940825.fna  
+    > Xoc_GCA_001021915.fna	99.149597  
+    > Xoc_GCA_001042835.fna	99.411034	99.196701  
+    > Xoo_GCA_001929235.fna	97.226959	97.219826	97.288483  
+    > Xoo_GCA_004136375.fna	97.313660	97.230530	97.365417	99.582520  
+    > Xoo_GCA_004355825.fna	97.236938	97.235214	97.313324	99.704956	99.590271  
     
 
 How to visualize ANI as heatmap matrix?
