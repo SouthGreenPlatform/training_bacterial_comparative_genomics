@@ -260,8 +260,8 @@ grep -v 'Sequence' gcskew.txt | awk {'print "Chr "2+5000" "$3'}  > gcskew.circos
 ```     
 
 ```bash
-awk {'if (3 == "CDS" && 7 == "+")print "Chr "5'} prokka_out/assembly.gff >genes_plus.txt
-awk {'if (3 == "CDS" && 7 == "-")print "Chr "5'} prokka_out/assembly.gff >genes_minus.txt
+awk {'if ($3 == "CDS" && $7 == "+")print "Chr "5'} prokka_out/assembly.gff >genes_plus.txt
+awk {'if ($3 == "CDS" && $7 == "-")print "Chr "5'} prokka_out/assembly.gff >genes_minus.txt
 ```
      
 ## **Visualize genome annotation (using Circos)**
@@ -495,6 +495,9 @@ bin/circos -conf circos2.conf
 ![](images/circos2.png)
 
 
+Alternatively, you can align the two Xoo genomes with the web application DGenies for displaying dot plot large genomes in an interactive, efficient and simple way
+[https://dgenies.toulouse.inra.fr/run](https://dgenies.toulouse.inra.fr/run)
+
 Do the same process for the comparing one Xoo and one Xoc
 
 ## **Compare genome similarity using Average Nucleotide Identity (ANI) (fastANI)**
@@ -643,7 +646,11 @@ scoary -t traits.txt -g gene_presence_absence.csv
 
 ## **Explore pan-genome with PanExplorer web application** 
 
-Using 
+Upload your 6 genomes into the web application and choose the PanACoTA software for pangenome reconstruction.
+[https://panexplorer.southgreen.fr/](https://panexplorer.southgreen.fr/)
+
+!!! question "Exercises"
+        How many genes are strain-specific of each of the 3 Xoo strains?
 
 
 ## **Analyse pangenome with a pangenome graph approach (using minigraph2)**
