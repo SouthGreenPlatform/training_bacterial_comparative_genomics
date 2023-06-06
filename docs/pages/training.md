@@ -449,8 +449,12 @@ Generate an output in paf format named "minimap2.paf".
      
 Visualize matches between genomes with Circos
 
-cd /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos
+We will use and adapt a template for circos configuration file for visualizing circos with links.
+
+```
+cd {{extra.project_path}}/training_bacterial_comparative_genomics/jupyter/circos
 cp -rf ../../data/circos2.conf circos2.conf
+```
      
 Edit the Circos configuration file to add informations about links
 
@@ -460,7 +464,7 @@ Edit the Circos configuration file to add informations about links
     z            = 50
     color        = nyt_red
     thickness    = 3
-    file         = /home/jovyan/training_bacterial_comparative_genomics/jupyter/links.txt
+    file         = /training_bacterial_comparative_genomics/jupyter/links.txt
     bezier_radius_purity = 0.2
     ribbon      = yes
     crest = 1
@@ -482,6 +486,8 @@ Edit a karyotype file with the two genomes and their size
 Make one of the genome in the opposite way by entering this line in the Circos configuration file
 
 chromosomes_reverse = CP040687.1
+
+Launch circos for visualization
 
 ```bash
 bin/circos -conf circos2.conf
