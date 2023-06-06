@@ -566,6 +566,7 @@ Look at the content of the roary output:
 
 ```
 head -10 roary_out/gene_presence_absence.csv  
+```
 > "Gene","Non-unique Gene name","Annotation","No. isolates","No. sequences","Avg sequences per isolate","Genome Fragment","Order within Fragment","Accessory Fragment","Accessory Order with Fragment","QC","Min group size nuc","Max group size nuc","Avg group size nuc","Xoc_GCA_000940825.gbff.gz","Xoc_GCA_001021915.gbff.gz","Xoc_GCA_001042835.gbff.gz","Xoo_GCA_001929235.gbff.gz","Xoo_GCA_004136375.gbff.gz","Xoo_GCA_004355825.gbff.gz"
 > "IXO1088_008755","","response regulator","6","6","1","1","1683","","","","404","404","404","BE73_06245.p01","FE36_14125.p01","ACU17_06495.p01","10bd397a0f88aca11976f4a4f6631125_6321","4e95a45ca635958849417c3d368d746d_7522","cc532a0030968c6887cea9dec5a101c0_11970"
 > "IXO1088_008760","","hypothetical protein","6","6","1","1","1682","","","","497","497","497","BE73_06250.p01","FE36_14120.p01","ACU17_06500.p01","10bd397a0f88aca11976f4a4f6631125_6325","4e95a45ca635958849417c3d368d746d_7526","cc532a0030968c6887cea9dec5a101c0_11966"
@@ -576,16 +577,16 @@ head -10 roary_out/gene_presence_absence.csv
 > "DZA53_10545","","energy transducer TonB","6","6","1","1","1661","","","","875","875","875","BE73_06355.p01","FE36_14015.p01","ACU17_06605.p01","10bd397a0f88aca11976f4a4f6631125_6407","4e95a45ca635958849417c3d368d746d_7610","cc532a0030968c6887cea9dec5a101c0_11878"
 > "DZA53_10580","","chemotaxis protein","6","6","1","1","1654","","","","1202","1208","1205","BE73_06390.p01","FE36_13980.p01","ACU17_06640.p01","10bd397a0f88aca11976f4a4f6631125_6435","4e95a45ca635958849417c3d368d746d_7638","cc532a0030968c6887cea9dec5a101c0_11850"
 > "ACU17_06675","","copper homeostasis protein CutC","6","6","1","1","1646","","","","731","731","731","BE73_06425.p01","FE36_13950.p01","ACU17_06675.p01","10bd397a0f88aca11976f4a4f6631125_6467","4e95a45ca635958849417c3d368d746d_7672","cc532a0030968c6887cea9dec5a101c0_11818"
-```
 
-```
+
+```bash
 more roary_out/summary_statistics.txt  
+```
 > Core genes	(99% <= strains <= 100%)	2565
 > Soft core genes	(95% <= strains < 99%)	0
 > Shell genes	(15% <= strains < 95%)	3763
 > Cloud genes	(0% <= strains < 15%)	0
 > Total genes	(0% <= strains <= 100%)	6328
-```
 
 In order to explore and represent graphs with roary outputs, we will make use of scripts available in Roary repository.
 
@@ -604,7 +605,7 @@ query_pan_genome -g roary_out/clustered_proteins -a difference --input_set_one a
 ![](images/pangenome_pie.png)
 ![](images/pangenome_matrix.png)
 
-## **Association tests with metadata (Pan-GWAS)**
+## **Association tests with metadata (Pan-GWAS) (with Scoary)**
 
 
 
@@ -616,39 +617,9 @@ cp -rf ../data/pangenome_100xantho ./
 cd pangenome_100xantho
 ```     
 
+```bash
 scoary -t traits.txt -g gene_presence_absence.csv
-     
-==== Scoary started ====
-Command: /usr/bin/scoary -t traits.txt -g gene_presence_absence.csv
-Reading gene presence absence file
-Creating Hamming distance matrix based on gene presence/absence
-Building UPGMA tree from distance matrix
-Reading traits file
-ERROR: Some isolates in your gene presence absence file were not represented in your traits file. These will count as MISSING data and will not be included.
-Finished loading files into memory.
-
-
-==== Performing statistics ====
--- Filtration options --
-Individual (Naive):    0.05
-Collapse genes:    False
-
-
-Tallying genes and performing statistical analyses
-Gene-wise counting and Fisher's exact tests for trait: pathovar
-100.00%
-Adding p-values adjusted for testing multiple hypotheses
-
-Storing results: pathovar
-Calculating max number of contrasting pairs for each nominally significant gene
-100.00%
-Storing results to file
-
-
-==== Finished ====
-Checked a total of 13554 genes for associations to 1 trait(s). Total time used: 24 seconds.
-Scoary finished successfully, but with ERRORS. Please check your log file.
-(base) 
+```
 
 !!! question "Questions"
         How many clusters are specifically present in pathovar oryzae (absent in oryzicola)
@@ -666,4 +637,14 @@ Scoary finished successfully, but with ERRORS. Please check your log file.
     ```bash
     awk -F "\",\"" {'if (4==15 && 5==0)print $_'} pathovar_*.results.csv | wc -l
     ```
-    > 110 
+    > 110
+
+## **Explore pan-genome with PanExplorer web application** 
+
+Using 
+
+
+## **Analyse pangenome with a pangenome graph approach (using minigraph2)**
+
+Pangenome analysis based on gene clustering approach will result in a pangene atlas, construction of a presence/absence matrix of genes.
+Pangenome can also be reconstructed directly on genomic sequences using pangenome graph approach using minigraph2.
