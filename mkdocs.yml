@@ -83,6 +83,7 @@ extra:
   # --- set whole scope variables ---
   contact: https://www.southgreen.fr/contact
   institute: SouthGreen
+  project_path: "/scratch3/TP_bcg/$USER"
   color_table_header: "#333a99"
 
 # page tree

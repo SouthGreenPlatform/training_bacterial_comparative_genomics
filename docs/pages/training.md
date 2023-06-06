@@ -1,12 +1,12 @@
 # Handsome bacterial comparative genomics
 
-## First commands
+## **First commands**
 
 First create your working environment:
 
 ```bash
-mkdir -p ~/training_bcg
-cd ~/training_bcg
+mkdir -p {{extra.project_path}}/training_bcg
+cd {{extra.project_path}}/training_bcg
 ```
 
 We can now download the git repository of this training that contains material needed for the training.
@@ -32,13 +32,13 @@ wget http://bioinfo-web.mpl.ird.fr/ideogram/CIX4108.sample.fastq.gz
     zcat raw_data/CIX4108.sample.fastq.gz | wc -l
     ```
 
-## Genome Assembly (from Oxford Nanopore Technologies (ONT) long reads) (using Flye)
+## **Genome Assembly (from Oxford Nanopore Technologies (ONT) long reads) (using Flye)**
 
 We start by creating and moving into a directory dedicated for the task:
 
 ```bash
-mkdir -p ~/training_bcg/assembly
-cd ~/training_bcg/assembly
+mkdir -p {{extra.project_path}}/training_bcg/assembly
+cd {{extra.project_path}}/training_bcg/assembly
 ```
 
 We will use Flye to perform the genome assembly. Let's start by installing the tool:
@@ -57,7 +57,7 @@ flye --nano-raw /data2/formation/Bacterial_genomics/raw_data/CIX4108.sample.fast
 As this task is time consuming we can stop the tool with `CTRL-C` and download the expected output:
 
 ```bash
-cp -rf ~/training_bcg/training_bacterial_comparative_genomics/data/precomputed_assembly/assembly_precomputed.fasta assembl .
+cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/data/precomputed_assembly/assembly_precomputed.fasta assembl .
 ```
 
 !!! question
@@ -70,13 +70,13 @@ cp -rf ~/training_bcg/training_bacterial_comparative_genomics/data/precomputed_a
 
      
 
-## Separate chromosomal and plasmid scaffolds (using MOB-Suite)
+## **Separate chromosomal and plasmid scaffolds (using MOB-Suite)**
 
 Let's start by creating and moving into a directory dedicated for the task:
 
 ```bash
-mkdir -p ~/training_bcg/mob_recon
-cd ~/training_bcg/mob_recon
+mkdir -p {{extra.project_path}}/training_bcg/mob_recon
+cd {{extra.project_path}}/training_bcg/mob_recon
 ```
 
 ```
@@ -86,7 +86,7 @@ singularity exec /home/jovyan/mob_suite_3.0.3.sif mob_recon -i assembly/assembly
 The precomputed result can be retrieved here
 
 ```bash
-cp -rf ~/training_bcg/training_bacterial_comparative_genomics/data/mob_recon/* .
+cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/data/mob_recon/* .
 ```
      
 The results is made by 4 files `chromosome.fasta  contig_report.txt  mobtyper_results.txt  plasmid_AD399.fasta`
@@ -103,15 +103,15 @@ more contig_report.txt
         assembly_precomputed	plasmid	AD399	-	contig_2_circular_rotated	69058	61.861044339540676	475037e138b4ade1836aa05f421c47b8	not tested	rep_cluster_1289	000607__CP000620_00033	MOBP	CP022994_00148	-	-	-	-	-	CP033195	0.0537328	Xanthomonas oryzae pv. oryzae	-	-	-
 
 
-## Genome annotation (using Prokka)
+## **Genome annotation (using Prokka)**
 
 We will now annotate the chromosome.
 Let's start by creating and moving into a directory dedicated for the task:
 
 ```bash
-mkdir -p ~/training_bcg/prokka
-cd ~/training_bcg/prokka
-ln -s ~/training_bcg/mob_recon/chromosome.fasta
+mkdir -p {{extra.project_path}}/training_bcg/prokka
+cd {{extra.project_path}}/training_bcg/prokka
+ln -s {{extra.project_path}}/training_bcg/mob_recon/chromosome.fasta
 ```
 
 We will use Prokka to perform the genome annotation. Let's start by installing the tool:
@@ -214,16 +214,16 @@ grep COG prokka_out/assembly.gff | head -5
 
 
 
-## GC content analysis (SkewIT)
+## **GC content analysis (SkewIT)**
 
 
 We will now use SkewIT for analyzing GC Skew.
 Let's start by creating and moving into a directory dedicated for the task:
 
 ```bash
-mkdir -p ~/training_bcg/skewit
-cd ~/training_bcg/skewit
-ln -s ~/training_bcg/mob_recon/chromosome.fasta
+mkdir -p {{extra.project_path}}/training_bcg/skewit
+cd {{extra.project_path}}/training_bcg/skewit
+ln -s {{extra.project_path}}/training_bcg/mob_recon/chromosome.fasta
 ```
 
 We will use SkewIT for analyzing GC Skew. Let's start by installing the tool:
