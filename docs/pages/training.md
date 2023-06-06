@@ -561,7 +561,9 @@ roary -f roary_out annotations/*gff
 ```
 
 Look at the content of the roary output:
+
  * Gene presence absence file
+
  * summary statistics
 
 ```
