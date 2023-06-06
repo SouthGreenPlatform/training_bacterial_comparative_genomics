@@ -649,11 +649,24 @@ scoary -t traits.txt -g gene_presence_absence.csv
 Upload your 6 genomes into the web application and choose the PanACoTA software for pangenome reconstruction.
 [https://panexplorer.southgreen.fr/](https://panexplorer.southgreen.fr/)
 
+![](images/panex_capture.PNG)
+
 !!! question "Exercises"
         How many genes are strain-specific of each of the 3 Xoo strains?
 
 
 ## **Analyse pangenome with a pangenome graph approach (using minigraph2)**
 
-Pangenome analysis based on gene clustering approach will result in a pangene atlas, construction of a presence/absence matrix of genes.
+Pangenome analysis based on gene clustering approach will result in a pangene atlas, construction of a presence/absence matrix of genes.  
+
 Pangenome can also be reconstructed directly on genomic sequences using pangenome graph approach using minigraph2.
+
+```
+minigraph -xggs -t16 Xoo_GCA_001929235.fna Xoo_GCA_004136375.fna >Xoo.gfa
+```
+
+
+
+Download the bandage software and load the GFA pangenome graph to be visualized
+
+![](images/bandage_capture.PNG)
