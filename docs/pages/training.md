@@ -528,14 +528,16 @@ Check that genomes are closer within the same pathovar than between pathovars.
     ```
 
 How to visualize ANI as heatmap matrix?
-Install using the R interface the library optparse and heatmaply
-
-install.packages("optparse")
-
-install.packages("heatmaply")
 
 ```bash
 perl ../convertANI.pl fastani.out.matrix >fastani.out.matrix.completed
+```
+
+Install using the R interface the library optparse and heatmaply
+
+```
+install.packages("optparse")
+install.packages("heatmaply")
 ```
 
 ```bash
@@ -549,25 +551,19 @@ Try to make the same process including our newly assembled genome
 
 ## **Gene content comparison / Pangenome analysis (using Roary)**
 
+Have a look to the help page of the roary program, and launch roary for comparing the gene content of the 6 genomes.
+
+```
 rm -rf roary_out
 roary -f roary_out annotations/*gff
-     
-(base) Use of uninitialized value in require at /usr/lib/x86_64-linux-gnu/perl5/5.30/Encode.pm line 70.
+```
 
-Please cite Roary if you use any of the results it produces:
-    Andrew J. Page, Carla A. Cummins, Martin Hunt, Vanessa K. Wong, Sandra Reuter, Matthew T. G. Holden, Maria Fookes, Daniel Falush, Jacqueline A. Keane, Julian Parkhill,
-	"Roary: Rapid large-scale prokaryote pan genome analysis", Bioinformatics, 2015 Nov 15;31(22):3691-3693
-    doi: http://doi.org/10.1093/bioinformatics/btv421
-	Pubmed: 26198102
+Look at the content of the roary output:
+ - Gene presence absence file
+ - summary statistics
 
-2022/06/13 08:51:34 Input file contains duplicate gene IDs, attempting to fix by adding a unique suffix, new GFF in the fixed_input_files directory: /home/jovyan/training_bacterial_comparative_genomics/jupyter/annotations/Xoo_GCA_001929235.gbff.gz.gff 
-2022/06/13 08:51:36 Input file contains duplicate gene IDs, attempting to fix by adding a unique suffix, new GFF in the fixed_input_files directory: /home/jovyan/training_bacterial_comparative_genomics/jupyter/annotations/Xoo_GCA_004136375.gbff.gz.gff 
-2022/06/13 08:51:38 Input file contains duplicate gene IDs, attempting to fix by adding a unique suffix, new GFF in the fixed_input_files directory: /home/jovyan/training_bacterial_comparative_genomics/jupyter/annotations/Xoo_GCA_004355825.gbff.gz.gff 
-Use of uninitialized value in require at /usr/lib/x86_64-linux-gnu/perl5/5.30/Encode.pm line 70.
-(base) 
-
-head -10 roary_out/gene_presence_absence.csv
-     
+```
+head -10 roary_out/gene_presence_absence.csv  
 "Gene","Non-unique Gene name","Annotation","No. isolates","No. sequences","Avg sequences per isolate","Genome Fragment","Order within Fragment","Accessory Fragment","Accessory Order with Fragment","QC","Min group size nuc","Max group size nuc","Avg group size nuc","Xoc_GCA_000940825.gbff.gz","Xoc_GCA_001021915.gbff.gz","Xoc_GCA_001042835.gbff.gz","Xoo_GCA_001929235.gbff.gz","Xoo_GCA_004136375.gbff.gz","Xoo_GCA_004355825.gbff.gz"
 "IXO1088_008755","","response regulator","6","6","1","1","1683","","","","404","404","404","BE73_06245.p01","FE36_14125.p01","ACU17_06495.p01","10bd397a0f88aca11976f4a4f6631125_6321","4e95a45ca635958849417c3d368d746d_7522","cc532a0030968c6887cea9dec5a101c0_11970"
 "IXO1088_008760","","hypothetical protein","6","6","1","1","1682","","","","497","497","497","BE73_06250.p01","FE36_14120.p01","ACU17_06500.p01","10bd397a0f88aca11976f4a4f6631125_6325","4e95a45ca635958849417c3d368d746d_7526","cc532a0030968c6887cea9dec5a101c0_11966"
@@ -578,16 +574,16 @@ head -10 roary_out/gene_presence_absence.csv
 "DZA53_10545","","energy transducer TonB","6","6","1","1","1661","","","","875","875","875","BE73_06355.p01","FE36_14015.p01","ACU17_06605.p01","10bd397a0f88aca11976f4a4f6631125_6407","4e95a45ca635958849417c3d368d746d_7610","cc532a0030968c6887cea9dec5a101c0_11878"
 "DZA53_10580","","chemotaxis protein","6","6","1","1","1654","","","","1202","1208","1205","BE73_06390.p01","FE36_13980.p01","ACU17_06640.p01","10bd397a0f88aca11976f4a4f6631125_6435","4e95a45ca635958849417c3d368d746d_7638","cc532a0030968c6887cea9dec5a101c0_11850"
 "ACU17_06675","","copper homeostasis protein CutC","6","6","1","1","1646","","","","731","731","731","BE73_06425.p01","FE36_13950.p01","ACU17_06675.p01","10bd397a0f88aca11976f4a4f6631125_6467","4e95a45ca635958849417c3d368d746d_7672","cc532a0030968c6887cea9dec5a101c0_11818"
-(base) 
+```
 
-more roary_out/summary_statistics.txt
-     
+```
+more roary_out/summary_statistics.txt  
 Core genes	(99% <= strains <= 100%)	2565
 Soft core genes	(95% <= strains < 99%)	0
 Shell genes	(15% <= strains < 95%)	3763
 Cloud genes	(0% <= strains < 15%)	0
 Total genes	(0% <= strains <= 100%)	6328
-(base) 
+```
 
 git clone https://github.com/sanger-pathogens/Roary.git
      
