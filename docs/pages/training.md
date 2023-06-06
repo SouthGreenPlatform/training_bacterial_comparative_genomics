@@ -300,7 +300,7 @@ cd /home/jovyan/training_bacterial_comparative_genomics/jupyter
 
 ![](images/circos1.svg)
 
-!!! question "Exercice"
+!!! question "Exercise"
         Follow the same process to include a new track for tRNA in your Circos
 
 ## **Retrieve public genomes available for comparison**
@@ -432,7 +432,7 @@ Generate an output in paf format named "minimap2.paf".
     minimap2 Xoo_GCA_001929235.fna Xoo_GCA_004136375.fna -o minimap2.paf
     ```
 
-!!! question "Exercices"
+!!! question "Exercises"
         Using awk command applied on the paf output of minimap2, we can try to filter matches between the two genomes in oreder to visualize connections with circos. Generate a new file named "links.txt" that contains links between the two genomes. 
         On the other hand, in order to highlight inversion, do the same for matches that are inverted between the two genomes.
 
@@ -561,42 +561,37 @@ roary -f roary_out annotations/*gff
 ```
 
 Look at the content of the roary output:
- - Gene presence absence file
- - summary statistics
+ * Gene presence absence file
+ * summary statistics
 
 ```
 head -10 roary_out/gene_presence_absence.csv  
-"Gene","Non-unique Gene name","Annotation","No. isolates","No. sequences","Avg sequences per isolate","Genome Fragment","Order within Fragment","Accessory Fragment","Accessory Order with Fragment","QC","Min group size nuc","Max group size nuc","Avg group size nuc","Xoc_GCA_000940825.gbff.gz","Xoc_GCA_001021915.gbff.gz","Xoc_GCA_001042835.gbff.gz","Xoo_GCA_001929235.gbff.gz","Xoo_GCA_004136375.gbff.gz","Xoo_GCA_004355825.gbff.gz"
-"IXO1088_008755","","response regulator","6","6","1","1","1683","","","","404","404","404","BE73_06245.p01","FE36_14125.p01","ACU17_06495.p01","10bd397a0f88aca11976f4a4f6631125_6321","4e95a45ca635958849417c3d368d746d_7522","cc532a0030968c6887cea9dec5a101c0_11970"
-"IXO1088_008760","","hypothetical protein","6","6","1","1","1682","","","","497","497","497","BE73_06250.p01","FE36_14120.p01","ACU17_06500.p01","10bd397a0f88aca11976f4a4f6631125_6325","4e95a45ca635958849417c3d368d746d_7526","cc532a0030968c6887cea9dec5a101c0_11966"
-"EBA21_16420","","hypothetical protein","6","6","1","1","1673","","","","512","512","512","BE73_06290.p01","FE36_14080.p01","ACU17_06540.p01","10bd397a0f88aca11976f4a4f6631125_6351","4e95a45ca635958849417c3d368d746d_7554","cc532a0030968c6887cea9dec5a101c0_11934"
-"pqqD","","pyrroloquinoline quinone biosynthesis peptide chaperone PqqD","6","6","1","1","1671","","","","278","278","278","BE73_06300.p01","FE36_14070.p01","ACU17_06550.p01","10bd397a0f88aca11976f4a4f6631125_6359","4e95a45ca635958849417c3d368d746d_7562","cc532a0030968c6887cea9dec5a101c0_11926"
-"pqqB","","pyrroloquinoline quinone biosynthesis protein PqqB","6","6","1","1","1669","","","","899","899","899","BE73_06310.p01","FE36_14060.p01","ACU17_06560.p01","10bd397a0f88aca11976f4a4f6631125_6367","4e95a45ca635958849417c3d368d746d_7570","cc532a0030968c6887cea9dec5a101c0_11918"
-"DZA53_10525","","hypothetical protein","6","6","1","1","1664","","","","524","524","524","BE73_06335.p01","FE36_14035.p01","ACU17_06585.p01","10bd397a0f88aca11976f4a4f6631125_6391","4e95a45ca635958849417c3d368d746d_7594","cc532a0030968c6887cea9dec5a101c0_11894"
-"DZA53_10545","","energy transducer TonB","6","6","1","1","1661","","","","875","875","875","BE73_06355.p01","FE36_14015.p01","ACU17_06605.p01","10bd397a0f88aca11976f4a4f6631125_6407","4e95a45ca635958849417c3d368d746d_7610","cc532a0030968c6887cea9dec5a101c0_11878"
-"DZA53_10580","","chemotaxis protein","6","6","1","1","1654","","","","1202","1208","1205","BE73_06390.p01","FE36_13980.p01","ACU17_06640.p01","10bd397a0f88aca11976f4a4f6631125_6435","4e95a45ca635958849417c3d368d746d_7638","cc532a0030968c6887cea9dec5a101c0_11850"
-"ACU17_06675","","copper homeostasis protein CutC","6","6","1","1","1646","","","","731","731","731","BE73_06425.p01","FE36_13950.p01","ACU17_06675.p01","10bd397a0f88aca11976f4a4f6631125_6467","4e95a45ca635958849417c3d368d746d_7672","cc532a0030968c6887cea9dec5a101c0_11818"
+> "Gene","Non-unique Gene name","Annotation","No. isolates","No. sequences","Avg sequences per isolate","Genome Fragment","Order within Fragment","Accessory Fragment","Accessory Order with Fragment","QC","Min group size nuc","Max group size nuc","Avg group size nuc","Xoc_GCA_000940825.gbff.gz","Xoc_GCA_001021915.gbff.gz","Xoc_GCA_001042835.gbff.gz","Xoo_GCA_001929235.gbff.gz","Xoo_GCA_004136375.gbff.gz","Xoo_GCA_004355825.gbff.gz"
+> "IXO1088_008755","","response regulator","6","6","1","1","1683","","","","404","404","404","BE73_06245.p01","FE36_14125.p01","ACU17_06495.p01","10bd397a0f88aca11976f4a4f6631125_6321","4e95a45ca635958849417c3d368d746d_7522","cc532a0030968c6887cea9dec5a101c0_11970"
+> "IXO1088_008760","","hypothetical protein","6","6","1","1","1682","","","","497","497","497","BE73_06250.p01","FE36_14120.p01","ACU17_06500.p01","10bd397a0f88aca11976f4a4f6631125_6325","4e95a45ca635958849417c3d368d746d_7526","cc532a0030968c6887cea9dec5a101c0_11966"
+> "EBA21_16420","","hypothetical protein","6","6","1","1","1673","","","","512","512","512","BE73_06290.p01","FE36_14080.p01","ACU17_06540.p01","10bd397a0f88aca11976f4a4f6631125_6351","4e95a45ca635958849417c3d368d746d_7554","cc532a0030968c6887cea9dec5a101c0_11934"
+> "pqqD","","pyrroloquinoline quinone biosynthesis peptide chaperone PqqD","6","6","1","1","1671","","","","278","278","278","BE73_06300.p01","FE36_14070.p01","ACU17_06550.p01","10bd397a0f88aca11976f4a4f6631125_6359","4e95a45ca635958849417c3d368d746d_7562","cc532a0030968c6887cea9dec5a101c0_11926"
+> "pqqB","","pyrroloquinoline quinone biosynthesis protein PqqB","6","6","1","1","1669","","","","899","899","899","BE73_06310.p01","FE36_14060.p01","ACU17_06560.p01","10bd397a0f88aca11976f4a4f6631125_6367","4e95a45ca635958849417c3d368d746d_7570","cc532a0030968c6887cea9dec5a101c0_11918"
+> "DZA53_10525","","hypothetical protein","6","6","1","1","1664","","","","524","524","524","BE73_06335.p01","FE36_14035.p01","ACU17_06585.p01","10bd397a0f88aca11976f4a4f6631125_6391","4e95a45ca635958849417c3d368d746d_7594","cc532a0030968c6887cea9dec5a101c0_11894"
+> "DZA53_10545","","energy transducer TonB","6","6","1","1","1661","","","","875","875","875","BE73_06355.p01","FE36_14015.p01","ACU17_06605.p01","10bd397a0f88aca11976f4a4f6631125_6407","4e95a45ca635958849417c3d368d746d_7610","cc532a0030968c6887cea9dec5a101c0_11878"
+> "DZA53_10580","","chemotaxis protein","6","6","1","1","1654","","","","1202","1208","1205","BE73_06390.p01","FE36_13980.p01","ACU17_06640.p01","10bd397a0f88aca11976f4a4f6631125_6435","4e95a45ca635958849417c3d368d746d_7638","cc532a0030968c6887cea9dec5a101c0_11850"
+> "ACU17_06675","","copper homeostasis protein CutC","6","6","1","1","1646","","","","731","731","731","BE73_06425.p01","FE36_13950.p01","ACU17_06675.p01","10bd397a0f88aca11976f4a4f6631125_6467","4e95a45ca635958849417c3d368d746d_7672","cc532a0030968c6887cea9dec5a101c0_11818"
 ```
 
 ```
 more roary_out/summary_statistics.txt  
-Core genes	(99% <= strains <= 100%)	2565
-Soft core genes	(95% <= strains < 99%)	0
-Shell genes	(15% <= strains < 95%)	3763
-Cloud genes	(0% <= strains < 15%)	0
-Total genes	(0% <= strains <= 100%)	6328
+> Core genes	(99% <= strains <= 100%)	2565
+> Soft core genes	(95% <= strains < 99%)	0
+> Shell genes	(15% <= strains < 95%)	3763
+> Cloud genes	(0% <= strains < 15%)	0
+> Total genes	(0% <= strains <= 100%)	6328
 ```
 
+In order to explore and represent graphs with roary outputs, we will make use of scripts available in Roary repository.
+
+```
 git clone https://github.com/sanger-pathogens/Roary.git
-     
-Cloning into 'Roary'...
-remote: Enumerating objects: 7454, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (5/5), done.
-remote: Total 7454 (delta 0), reused 1 (delta 0), pack-reused 7449
-Receiving objects: 100% (7454/7454), 18.12 MiB | 6.84 MiB/s, done.
-Resolving deltas: 100% (4181/4181), done.
-(base) 
+```  
 
 ```bash
 python Roary/contrib/roary_plots/roary_plots.py roary_out/accessory_binary_genes.fa.newick roary_out/gene_presence_absence.csv
@@ -611,10 +606,15 @@ query_pan_genome -g roary_out/clustered_proteins -a difference --input_set_one a
 
 ## **Association tests with metadata (Pan-GWAS)**
 
+
+
+!!! question "Exercises"
+        Using the scoary program, 
+
+```
 cp -rf ../data/pangenome_100xantho ./
 cd pangenome_100xantho
-     
-(base) (base) 
+```     
 
 scoary -t traits.txt -g gene_presence_absence.csv
      
@@ -649,15 +649,21 @@ Storing results to file
 Checked a total of 13554 genes for associations to 1 trait(s). Total time used: 24 seconds.
 Scoary finished successfully, but with ERRORS. Please check your log file.
 (base) 
-How many clusters are specifically present in pathovar oryzae (absent in oryzicola)
 
-awk -F "\",\"" {'if (4==0 && 5==75)print $_'} pathovar_*.results.csv | wc -l
-     
-28
-(base) 
-How many clusters are specifically present in pathovar oryzicola (absent in oryzae)
+!!! question "Questions"
+        How many clusters are specifically present in pathovar oryzae (absent in oryzicola)
 
-awk -F "\",\"" {'if (4==15 && 5==0)print $_'} pathovar_*.results.csv | wc -l
-     
-110
-(base) 
+??? example "Solution"
+    ```bash
+    awk -F "\",\"" {'if (4==0 && 5==75)print $_'} pathovar_*.results.csv | wc -l
+    ```
+    > 28 
+
+!!! question "Questions"
+       How many clusters are specifically present in pathovar oryzicola (absent in oryzae)
+
+??? example "Solution"
+    ```bash
+    awk -F "\",\"" {'if (4==15 && 5==0)print $_'} pathovar_*.results.csv | wc -l
+    ```
+    > 110 
