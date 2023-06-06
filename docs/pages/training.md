@@ -264,7 +264,7 @@ awk {'if (3 == "CDS" && 7 == "+")print "Chr "5'} prokka_out/assembly.gff >genes_
 awk {'if (3 == "CDS" && 7 == "-")print "Chr "5'} prokka_out/assembly.gff >genes_minus.txt
 ```
      
-## Visualize genome annotation (using Circos)
+## **Visualize genome annotation (using Circos)**
 
 Install Circos in the terminal by typing these commands
 
@@ -339,17 +339,16 @@ Using the wget command, retrieve the prokaryotes.txt file hosted at NCBI.
     grep "Xanthomonas oryzae pv. oryzicola" prokaryotes.txt | grep -c 'chromosome:'
     ```
 
-Now, retrieve the genome files (fasta and annotations) of 3 Xoo and 3 Xoc
+Now, retrieve the genome files (fasta and annotations) of the first 3 Xoo and first 3 Xoc (as they appear in the file)
 
 ??? example "Solution"
     ```bash
     grep "Xanthomonas oryzae pv. oryzicola" prokaryotes.txt | grep 'chromosome:' | head -3
-    ```
      
 Xanthomonas oryzae pv. oryzicola	129394	PRJNA248159	248159	Proteobacteria	Gammaproteobacteria	4.43083	64.1	chromosome:NZ_CP007810.1/CP007810.1	-	1	4137	3486	2015/06/08	2021/11/23	Complete Genome	Key Laboratory of Agricultural Biodiversity for Plant Disease Management under the Ministry of Education	SAMN02793996	GCA_001021915.1	REPR	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/021/915/GCA_001021915.1_ASM102191v1	-	YM15
 Xanthomonas oryzae pv. oryzicola	129394	PRJNA237971	237971	Proteobacteria	Gammaproteobacteria	5.0801	64	chromosome:NZ_CP007221.1/CP007221.1	-	1	4690	3924	2015/03/04	2022/01/21	Complete Genome	Cornell University	SAMN02640212	GCA_000940825.1	-	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/940/825/GCA_000940825.1_ASM94082v1	27148456	CFBP7342
 Xanthomonas oryzae pv. oryzicola	129394	PRJNA280380	280380	Proteobacteria	Gammaproteobacteria	5.01777	63.9	chromosome:NZ_CP011959.1/CP011959.1	-	1	4564	3815	2015/06/30	2021/11/23	Complete Genome	Bogdanove Lab, Plant Pathology and Plant-Microbe Biology, Cornell University	SAMN03612287	GCA_001042835.1	-	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/042/835/GCA_001042835.1_ASM104283v1	-	CFBP7341
-grep: write error: Broken pipe
+```
 
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/021/915/GCA_001021915.1_ASM102191v1/GCA_001021915.1_ASM102191v1_genomic.fna.gz -O Xoc_GCA_001021915.fna.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/940/825/GCA_000940825.1_ASM94082v1/GCA_000940825.1_ASM94082v1_genomic.fna.gz -O Xoc_GCA_000940825.fna.gz
@@ -400,7 +399,7 @@ git clone https://github.com/bioperl/bioperl-live.git
 chmod 755 bioperl-live/bin/*
 ```
 
-```  
+``` 
 perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoo_GCA_004136375.gbff.gz
 perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoo_GCA_001929235.gbff.gz
 perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoo_GCA_004355825.gbff.gz
@@ -413,33 +412,29 @@ perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoc_GCA_001042835.gbff.gz
 ```bash
 mv Xo*gff annotations
 ```
+
+Have a look into the content of a GFF file.
  
-## Comparison between 2 genomes (with Minimap2 and circos)
+## **Comparison between 2 genomes (with Minimap2 and circos)**
 
 Compare 2 Xoo
 
+```
 gunzip Xoo*fna.gz
-     
+```     
 (base) 
 
+```
 ls Xoo*fna
-     
-Xoo_GCA_001929235.fna  Xoo_GCA_004136375.fna  Xoo_GCA_004355825.fna
-(base) 
+```
 
-minimap2 Xoo_GCA_001929235.fna Xoo_GCA_004136375.fna -o minimap2.paf
-     
-[M::mm_idx_gen::0.268*1.00] collected minimizers
-[M::mm_idx_gen::0.413*0.99] sorted minimizers
-[M::main::0.413*0.99] loaded/built the index for 1 target sequence(s)
-[M::mm_mapopt_update::0.437*0.98] mid_occ = 71
-[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
-[M::mm_idx_stat::0.456*0.97] distinct minimizers: 780094 (93.86% are singletons); average occurrences: 1.219; average spacing: 5.354
-[M::worker_pipeline::21.876*0.98] mapped 1 sequences
-[M::main] Version: 2.17-r941
-[M::main] CMD: minimap2 -o minimap2.paf Xoo_GCA_001929235.fna Xoo_GCA_004136375.fna
-[M::main] Real time: 21.898 sec; CPU: 21.369 sec; Peak RSS: 0.293 GB
-(base) 
+Using minimap2, compare 2 genomes of Xoo (Xanthomonas oryzae pv.oryzae): Xoo_GCA_001929235 and Xoo_GCA_004136375.
+
+??? example "Solution"
+    ```bash
+    minimap2 Xoo_GCA_001929235.fna Xoo_GCA_004136375.fna -o minimap2.paf
+    ```
+
 
 awk {'if ((3)>100000 && 1" "4'} minimap2.paf >links.txt
 awk {'if ((3)>100000 && 6" "9'} minimap2.paf >>links.txt
@@ -492,7 +487,7 @@ bin/circos -conf circos2.conf
 
 Do the same process for the comparing one Xoo and one Xoc
 
-## Compare genome similarity using Average Nucleotide Identity (ANI) (fastANI)
+## **Compare genome similarity using Average Nucleotide Identity (ANI) (fastANI)**
 
 ls Xo*fna >list_genomes.txt
      
@@ -564,7 +559,7 @@ Rscript ../heatmaply.R -f fastani.out.matrix.completed
 Try to make the same process including our newly assembled genome
 
 
-## Gene content comparison / Pangenome analysis (using Roary)
+## **Gene content comparison / Pangenome analysis (using Roary)**
 
 rm -rf roary_out
 roary -f roary_out annotations/*gff
@@ -628,7 +623,7 @@ query_pan_genome -g roary_out/clustered_proteins -a difference --input_set_one a
 ![](images/pangenome_pie.png)
 ![](images/pangenome_matrix.png)
 
-## Association tests with metadata (Pan-GWAS)
+## **Association tests with metadata (Pan-GWAS)**
 
 cp -rf ../data/pangenome_100xantho ./
 cd pangenome_100xantho
