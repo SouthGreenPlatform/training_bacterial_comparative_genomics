@@ -376,7 +376,7 @@ Do the same for retrieving the first 3 complete genome of Xoc (Xanthomonas oryza
     wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1/GCA_004355825.1_ASM435582v1_genomic.gbff.gz -O Xoo_GCA_004355825.gbff.gz
     ```
 
-## Convert GenBank annotation files to GFF format
+## **Convert GenBank annotation files to GFF format**
 
 Create a new directory named "annotations" and move annotations files into this new directory  
 
@@ -418,7 +418,6 @@ Compare 2 Xoo
 ```
 gunzip Xoo*fna.gz
 ```     
-(base) 
 
 ```
 ls Xoo*fna
@@ -500,56 +499,34 @@ Do the same process for the comparing one Xoo and one Xoc
 
 ## **Compare genome similarity using Average Nucleotide Identity (ANI) (fastANI)**
 
-ls Xo*fna >list_genomes.txt
-     
-(base) 
 
+Create a file that contains the list of genomes to be taken as input
+
+```
+ls Xo*fna >list_genomes.txt
+```  
+
+```
 fastANI --rl list_genomes.txt --ql list_genomes.txt -o fastani.out --matrix
-     
->>>>>>>>>>>>>>>>>>
-Reference = [Xoc_GCA_000940825.fna, Xoc_GCA_001021915.fna, Xoc_GCA_001042835.fna, Xoo_GCA_001929235.fna, Xoo_GCA_004136375.fna, Xoo_GCA_004355825.fna]
-Query = [Xoc_GCA_000940825.fna, Xoc_GCA_001021915.fna, Xoc_GCA_001042835.fna, Xoo_GCA_001929235.fna, Xoo_GCA_004136375.fna, Xoo_GCA_004355825.fna]
-Kmer size = 16
-Fragment length = 3000
-Threads = 1
-ANI output file = fastani.out
->>>>>>>>>>>>>>>>>>
-INFO [thread 0], skch::main, Count of threads executing parallel_for : 1
-INFO [thread 0], skch::Sketch::build, window size for minimizer sampling  = 24
-INFO [thread 0], skch::Sketch::build, minimizers picked from reference = 2380733
-INFO [thread 0], skch::Sketch::index, unique minimizers = 524575
-INFO [thread 0], skch::Sketch::computeFreqHist, Frequency histogram of minimizers = (1, 69292) ... (1492, 1)
-INFO [thread 0], skch::Sketch::computeFreqHist, consider all minimizers during lookup.
-INFO [thread 0], skch::main, Time spent sketching the reference : 3.11525 sec
-INFO [thread 0], skch::main, Time spent mapping fragments in query #1 : 31.626 sec
-INFO [thread 0], skch::main, Time spent post mapping : 0.0189969 sec
-INFO [thread 0], skch::main, Time spent mapping fragments in query #2 : 14.3783 sec
-INFO [thread 0], skch::main, Time spent post mapping : 0.00975784 sec
-INFO [thread 0], skch::main, Time spent mapping fragments in query #3 : 28.5834 sec
-INFO [thread 0], skch::main, Time spent post mapping : 0.0176016 sec
-INFO [thread 0], skch::main, Time spent mapping fragments in query #4 : 41.3489 sec
-INFO [thread 0], skch::main, Time spent post mapping : 0.0251571 sec
-INFO [thread 0], skch::main, Time spent mapping fragments in query #5 : 40.2052 sec
-INFO [thread 0], skch::main, Time spent post mapping : 0.0271014 sec
-INFO [thread 0], skch::main, Time spent mapping fragments in query #6 : 41.0341 sec
-INFO [thread 0], skch::main, Time spent post mapping : 0.0254486 sec
-INFO [thread 0], skch::main, ready to exit the loop
-INFO, skch::main, parallel_for execution finished
-(base) 
+```
+
 Check that genomes are closer within the same pathovar than between pathovars.
 
-Which are the closest genomes?
+!!! question "Questions"
+        Which are the closest genomes?
 
-more fastani.out.matrix
-     
-6
-Xoc_GCA_000940825.fna
-Xoc_GCA_001021915.fna	99.149597
-Xoc_GCA_001042835.fna	99.411034	99.196701
-Xoo_GCA_001929235.fna	97.226959	97.219826	97.288483
-Xoo_GCA_004136375.fna	97.313660	97.230530	97.365417	99.582520
-Xoo_GCA_004355825.fna	97.236938	97.235214	97.313324	99.704956	99.590271
-(base) 
+??? example "Solution"
+    ```bash
+    more fastani.out.matrix 
+    6
+    Xoc_GCA_000940825.fna
+    Xoc_GCA_001021915.fna	99.149597
+    Xoc_GCA_001042835.fna	99.411034	99.196701
+    Xoo_GCA_001929235.fna	97.226959	97.219826	97.288483
+    Xoo_GCA_004136375.fna	97.313660	97.230530	97.365417	99.582520
+    Xoo_GCA_004355825.fna	97.236938	97.235214	97.313324	99.704956	99.590271
+    ```
+
 How to visualize ANI as heatmap matrix?
 Install using the R interface the library optparse and heatmaply
 
