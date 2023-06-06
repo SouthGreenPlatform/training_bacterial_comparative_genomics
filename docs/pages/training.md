@@ -439,12 +439,12 @@ Generate an output in paf format named "minimap2.paf".
 
 ??? example "Solution"
     ```bash
-    awk {'if (($3)>100000 && print $1" "$4'} minimap2.paf >links.txt
-    awk {'if (($3)>100000 && print $6" "$9'} minimap2.paf >>links.txt
-    ```
-     
-    awk {'if (($3)>100000 && print $1" "$4'} minimap2.paf >links_inverted.txt
-    awk {'if (($3)>100000 && print $6" "$8'} minimap2.paf >>links_inverted.txt
+    awk {'if (($4-$3)>100000 && ($5 =="+"))print NR-1" "$1" "$4'} minimap2.paf >links.txt
+    awk {'if (($4-$3)>100000 && ($5 =="+"))print NR-1" "$6" "$9'} minimap2.paf >>links.txt
+    
+    awk {'if (($4-$3)>100000 && ($5 =="-"))print NR-1" "$1" "$4'} minimap2.paf >links_inverted.txt
+    awk {'if (($4-$3)>100000 && ($5 =="-"))print NR-1" "$9" "$8'} minimap2.paf >>links_inverted.txt
+
     ```
      
 Visualize matches between genomes with Circos
@@ -452,28 +452,31 @@ Visualize matches between genomes with Circos
 cd /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos
 cp -rf ../../data/circos2.conf circos2.conf
      
-(base) (base) 
 Edit the Circos configuration file to add informations about links
 
-<link segdup-bundle34>
-z            = 50
-color        = nyt_red
-thickness    = 3
-file         = /home/jovyan/training_bacterial_comparative_genomics/jupyter/links.txt
-bezier_radius_purity = 0.2
-ribbon      = yes
-crest = 1
-</link>
+??? example "Solution"
+    ```bash
+    <link segdup-bundle34>
+    z            = 50
+    color        = nyt_red
+    thickness    = 3
+    file         = /home/jovyan/training_bacterial_comparative_genomics/jupyter/links.txt
+    bezier_radius_purity = 0.2
+    ribbon      = yes
+    crest = 1
+    </link>
 
-<link segdup-bundle35>
-z            = 50
-color        = nyt_blue
-thickness    = 3
-file         = /home/jovyan/training_bacterial_comparative_genomics/jupyter/links_inverted.txt
-bezier_radius_purity = 0.2
-ribbon      = yes
-crest = 1
-</link>
+    <link segdup-bundle35>
+    z            = 50
+    color        = nyt_blue
+    thickness    = 3
+    file         = /home/jovyan/training_bacterial_comparative_genomics/jupyter/links_inverted.txt
+    bezier_radius_purity = 0.2
+    ribbon      = yes
+    crest = 1
+    </link>
+    ```
+
 Edit a karyotype file with the two genomes and their size
 
 Make one of the genome in the opposite way by entering this line in the Circos configuration file
