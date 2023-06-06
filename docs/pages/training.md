@@ -321,12 +321,9 @@ Using the wget command, retrieve the prokaryotes.txt file hosted at NCBI.
 
 
 !!! question "Questions"
-        Can we find the same number of Xanthomonas genomes from this file?
-
-        How many public genomes of Xanthomonas oryzae species have been released in Genbank? 
-
-        How many genomes are complete?
-
+        Can we find the same number of Xanthomonas genomes from this file?  
+        How many public genomes of Xanthomonas oryzae species have been released in Genbank?  
+        How many genomes are complete?  
         How many public complete genomes of Xanthomonas oryzae, pathovar oryzae are available?
 
 ??? example "Solution"
@@ -338,12 +335,16 @@ Using the wget command, retrieve the prokaryotes.txt file hosted at NCBI.
     grep "Xanthomonas oryzae pv. oryzae" prokaryotes.txt | grep -c 'chromosome:'
     ```
 
-grep "Xanthomonas oryzae pv. oryzicola" prokaryotes.txt | grep -c 'chromosome:'
-     
-17
-Retrieve 3 Xoc genomes (fasta and annotations)
+    ```bash
+    grep "Xanthomonas oryzae pv. oryzicola" prokaryotes.txt | grep -c 'chromosome:'
+    ```
 
-grep "Xanthomonas oryzae pv. oryzicola" prokaryotes.txt | grep 'chromosome:' | head -3
+Now, retrieve the genome files (fasta and annotations) of 3 Xoo and 3 Xoc
+
+??? example "Solution"
+    ```bash
+    grep "Xanthomonas oryzae pv. oryzicola" prokaryotes.txt | grep 'chromosome:' | head -3
+    ```
      
 Xanthomonas oryzae pv. oryzicola	129394	PRJNA248159	248159	Proteobacteria	Gammaproteobacteria	4.43083	64.1	chromosome:NZ_CP007810.1/CP007810.1	-	1	4137	3486	2015/06/08	2021/11/23	Complete Genome	Key Laboratory of Agricultural Biodiversity for Plant Disease Management under the Ministry of Education	SAMN02793996	GCA_001021915.1	REPR	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/021/915/GCA_001021915.1_ASM102191v1	-	YM15
 Xanthomonas oryzae pv. oryzicola	129394	PRJNA237971	237971	Proteobacteria	Gammaproteobacteria	5.0801	64	chromosome:NZ_CP007221.1/CP007221.1	-	1	4690	3924	2015/03/04	2022/01/21	Complete Genome	Cornell University	SAMN02640212	GCA_000940825.1	-	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/940/825/GCA_000940825.1_ASM94082v1	27148456	CFBP7342
@@ -354,79 +355,10 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/021/915/GCA_001021915.1_AS
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/940/825/GCA_000940825.1_ASM94082v1/GCA_000940825.1_ASM94082v1_genomic.fna.gz -O Xoc_GCA_000940825.fna.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/042/835/GCA_001042835.1_ASM104283v1/GCA_001042835.1_ASM104283v1_genomic.fna.gz -O Xoc_GCA_001042835.fna.gz
      
---2022-06-13 13:20:04--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/021/915/GCA_001021915.1_ASM102191v1/GCA_001021915.1_ASM102191v1_genomic.fna.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.12, 130.14.250.10, 2607:f220:41f:250::230, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.12|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1281033 (1.2M) [application/x-gzip]
-Saving to: ‘Xoc_GCA_001021915.fna.gz’
-
-Xoc_GCA_001021915.f 100%[===================>]   1.22M  2.23MB/s    in 0.5s    
-
-2022-06-13 13:20:05 (2.23 MB/s) - ‘Xoc_GCA_001021915.fna.gz’ saved [1281033/1281033]
-
-(base) --2022-06-13 13:20:05--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/940/825/GCA_000940825.1_ASM94082v1/GCA_000940825.1_ASM94082v1_genomic.fna.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.10, 130.14.250.12, 2607:f220:41e:250::11, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.10|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1435249 (1.4M) [application/x-gzip]
-Saving to: ‘Xoc_GCA_000940825.fna.gz’
-
-Xoc_GCA_000940825.f 100%[===================>]   1.37M  2.51MB/s    in 0.5s    
-
-2022-06-13 13:20:06 (2.51 MB/s) - ‘Xoc_GCA_000940825.fna.gz’ saved [1435249/1435249]
-
-(base) --2022-06-13 13:20:06--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/042/835/GCA_001042835.1_ASM104283v1/GCA_001042835.1_ASM104283v1_genomic.fna.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.10, 130.14.250.12, 2607:f220:41f:250::230, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.10|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1423224 (1.4M) [application/x-gzip]
-Saving to: ‘Xoc_GCA_001042835.fna.gz’
-
-Xoc_GCA_001042835.f 100%[===================>]   1.36M  2.46MB/s    in 0.6s    
-
-2022-06-13 13:20:07 (2.46 MB/s) - ‘Xoc_GCA_001042835.fna.gz’ saved [1423224/1423224]
-
-(base) 
-
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/021/915/GCA_001021915.1_ASM102191v1/GCA_001021915.1_ASM102191v1_genomic.gbff.gz -O Xoc_GCA_001021915.gbff.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/940/825/GCA_000940825.1_ASM94082v1/GCA_000940825.1_ASM94082v1_genomic.gbff.gz -O Xoc_GCA_000940825.gbff.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/042/835/GCA_001042835.1_ASM104283v1/GCA_001042835.1_ASM104283v1_genomic.gbff.gz -O Xoc_GCA_001042835.gbff.gz
      
---2022-06-13 05:02:31--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/021/915/GCA_001021915.1_ASM102191v1/GCA_001021915.1_ASM102191v1_genomic.gbff.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.7, 165.112.9.229, 2607:f220:41e:250::7, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.7|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 2951060 (2.8M) [application/x-gzip]
-Saving to: ‘Xoc_GCA_001021915.gbff.gz’
-
-Xoc_GCA_001021915.g 100%[===================>]   2.81M  4.33MB/s    in 0.6s    
-
-2022-06-13 05:02:32 (4.33 MB/s) - ‘Xoc_GCA_001021915.gbff.gz’ saved [2951060/2951060]
-
-(base) --2022-06-13 05:02:32--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/940/825/GCA_000940825.1_ASM94082v1/GCA_000940825.1_ASM94082v1_genomic.gbff.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.7, 165.112.9.229, 2607:f220:41e:250::10, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.7|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 3305656 (3.2M) [application/x-gzip]
-Saving to: ‘Xoc_GCA_000940825.gbff.gz’
-
-Xoc_GCA_000940825.g 100%[===================>]   3.15M  4.39MB/s    in 0.7s    
-
-2022-06-13 05:02:33 (4.39 MB/s) - ‘Xoc_GCA_000940825.gbff.gz’ saved [3305656/3305656]
-
-(base) --2022-06-13 05:02:34--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/042/835/GCA_001042835.1_ASM104283v1/GCA_001042835.1_ASM104283v1_genomic.gbff.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 165.112.9.229, 130.14.250.7, 2607:f220:41e:250::10, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|165.112.9.229|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 3285574 (3.1M) [application/x-gzip]
-Saving to: ‘Xoc_GCA_001042835.gbff.gz’
-
-Xoc_GCA_001042835.g 100%[===================>]   3.13M  4.37MB/s    in 0.7s    
-
-2022-06-13 05:02:35 (4.37 MB/s) - ‘Xoc_GCA_001042835.gbff.gz’ saved [3285574/3285574]
-
-(base) 
 Retrieve 3 Xoo genomes (fasta and annotations)
 
 grep "Xanthomonas oryzae pv. oryzae" prokaryotes.txt | grep 'chromosome:' | head -3
@@ -440,80 +372,10 @@ grep: write error: Broken pipe
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/136/375/GCA_004136375.1_ASM413637v1/GCA_004136375.1_ASM413637v1_genomic.fna.gz -O Xoo_GCA_004136375.fna.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/929/235/GCA_001929235.2_ASM192923v2/GCA_001929235.2_ASM192923v2_genomic.fna.gz -O Xoo_GCA_001929235.fna.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1/GCA_004355825.1_ASM435582v1_genomic.fna.gz -O Xoo_GCA_004355825.fna.gz
-     
---2022-06-13 13:19:47--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/136/375/GCA_004136375.1_ASM413637v1/GCA_004136375.1_ASM413637v1_genomic.fna.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.10, 130.14.250.12, 2607:f220:41e:250::11, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.10|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1415838 (1.3M) [application/x-gzip]
-Saving to: ‘Xoo_GCA_004136375.fna.gz’
-
-Xoo_GCA_004136375.f 100%[===================>]   1.35M  2.17MB/s    in 0.6s    
-
-2022-06-13 13:19:49 (2.17 MB/s) - ‘Xoo_GCA_004136375.fna.gz’ saved [1415838/1415838]
-
-(base) --2022-06-13 13:19:49--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/929/235/GCA_001929235.2_ASM192923v2/GCA_001929235.2_ASM192923v2_genomic.fna.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.10, 130.14.250.12, 2607:f220:41f:250::230, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.10|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1445997 (1.4M) [application/x-gzip]
-Saving to: ‘Xoo_GCA_001929235.fna.gz’
-
-Xoo_GCA_001929235.f 100%[===================>]   1.38M  2.52MB/s    in 0.5s    
-
-2022-06-13 13:19:50 (2.52 MB/s) - ‘Xoo_GCA_001929235.fna.gz’ saved [1445997/1445997]
-
-(base) --2022-06-13 13:19:50--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1/GCA_004355825.1_ASM435582v1_genomic.fna.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.10, 130.14.250.12, 2607:f220:41e:250::11, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.10|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1431347 (1.4M) [application/x-gzip]
-Saving to: ‘Xoo_GCA_004355825.fna.gz’
-
-Xoo_GCA_004355825.f 100%[===================>]   1.36M  2.48MB/s    in 0.6s    
-
-2022-06-13 13:19:51 (2.48 MB/s) - ‘Xoo_GCA_004355825.fna.gz’ saved [1431347/1431347]
-
-(base) 
 
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/136/375/GCA_004136375.1_ASM413637v1/GCA_004136375.1_ASM413637v1_genomic.gbff.gz -O Xoo_GCA_004136375.gbff.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/929/235/GCA_001929235.2_ASM192923v2/GCA_001929235.2_ASM192923v2_genomic.gbff.gz -O Xoo_GCA_001929235.gbff.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1/GCA_004355825.1_ASM435582v1_genomic.gbff.gz -O Xoo_GCA_004355825.gbff.gz
-     
---2022-06-13 06:58:10--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/136/375/GCA_004136375.1_ASM413637v1/GCA_004136375.1_ASM413637v1_genomic.gbff.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 165.112.9.228, 130.14.250.12, 2607:f220:41e:250::11, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|165.112.9.228|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 3276284 (3.1M) [application/x-gzip]
-Saving to: ‘Xoo_GCA_004136375.gbff.gz’
-
-Xoo_GCA_004136375.g 100%[===================>]   3.12M  4.31MB/s    in 0.7s    
-
-2022-06-13 06:58:11 (4.31 MB/s) - ‘Xoo_GCA_004136375.gbff.gz’ saved [3276284/3276284]
-
-(base) --2022-06-13 06:58:11--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/929/235/GCA_001929235.2_ASM192923v2/GCA_001929235.2_ASM192923v2_genomic.gbff.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 165.112.9.228, 130.14.250.12, 2607:f220:41f:250::229, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|165.112.9.228|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 3360152 (3.2M) [application/x-gzip]
-Saving to: ‘Xoo_GCA_001929235.gbff.gz’
-
-Xoo_GCA_001929235.g 100%[===================>]   3.20M  4.40MB/s    in 0.7s    
-
-2022-06-13 06:58:13 (4.40 MB/s) - ‘Xoo_GCA_001929235.gbff.gz’ saved [3360152/3360152]
-
-(base) --2022-06-13 06:58:13--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1/GCA_004355825.1_ASM435582v1_genomic.gbff.gz
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 165.112.9.228, 130.14.250.12, 2607:f220:41e:250::11, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|165.112.9.228|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 3309902 (3.2M) [application/x-gzip]
-Saving to: ‘Xoo_GCA_004355825.gbff.gz’
-
-Xoo_GCA_004355825.g 100%[===================>]   3.16M  4.42MB/s    in 0.7s    
-
-2022-06-13 06:58:14 (4.42 MB/s) - ‘Xoo_GCA_004355825.gbff.gz’ saved [3309902/3309902]
-
-(base) 
 
 gunzip *.fna.gz
      
@@ -521,47 +383,32 @@ gunzip *.fna.gz
 
 ## Convert GenBank annotation files to GFF format
 
-rm -rf annotations
+Create a new directory named "annotations" and move annotations files into this new directory  
+
+```
 mkdir annotations
-     
-(base) (base) 
-
 cp -rf Xo*gbff.gz annotations
-     
-(base) 
+```
 
+We will make use of Perl scripts for converting genbank files to GFF format:
+[https://github.com/bioperl/bioperl-live.git](https://github.com/bioperl/bioperl-live.git)
+
+Clone this repository and run the dedicated bp_genbank2gff3 tool on each of the 6 Xanthomonas genomes.
+
+```
 git clone https://github.com/bioperl/bioperl-live.git
 chmod 755 bioperl-live/bin/*
-     
-fatal: destination path 'bioperl-live' already exists and is not an empty directory.
-(base) (base) 
+```
 
+```  
 perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoo_GCA_004136375.gbff.gz
 perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoo_GCA_001929235.gbff.gz
 perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoo_GCA_004355825.gbff.gz
 perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoc_GCA_001021915.gbff.gz
 perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoc_GCA_000940825.gbff.gz
 perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoc_GCA_001042835.gbff.gz
-     
-# Input: annotations/Xoo_GCA_004136375.gbff.gz
-# working on region:CP031697, Xanthomonas oryzae pv. oryzae, Xanthomonas oryzae pv. oryzae strain ICMP3125 chromosome, complete genome., 04-FEB-2019
-# GFF3 saved to ./Xoo_GCA_004136375.gbff.gz.gff
-(base) # Input: annotations/Xoo_GCA_001929235.gbff.gz
-# working on region:CP040687, Xanthomonas oryzae pv. oryzae, Xanthomonas oryzae pv. oryzae strain IXO1088 chromosome, complete genome., 06-MAR-2020
-# GFF3 saved to ./Xoo_GCA_001929235.gbff.gz.gff
-(base) # Input: annotations/Xoo_GCA_004355825.gbff.gz
-# working on region:CP033192, Xanthomonas oryzae pv. oryzae, Xanthomonas oryzae pv. oryzae strain NX0260 chromosome, complete genome., 19-MAR-2019
-# GFF3 saved to ./Xoo_GCA_004355825.gbff.gz.gff
-(base) # Input: annotations/Xoc_GCA_001021915.gbff.gz
-# working on region:CP007810, Xanthomonas oryzae pv. oryzicola, Xanthomonas oryzae pv. oryzicola strain YM15, complete genome., 08-JUN-2015
-# GFF3 saved to ./Xoc_GCA_001021915.gbff.gz.gff
-(base) # Input: annotations/Xoc_GCA_000940825.gbff.gz
-# working on region:CP007221, Xanthomonas oryzae pv. oryzicola, Xanthomonas oryzae pv. oryzicola strain CFBP7342, complete genome., 16-NOV-2015
-# GFF3 saved to ./Xoc_GCA_000940825.gbff.gz.gff
-(base) # Input: annotations/Xoc_GCA_001042835.gbff.gz
-# working on region:CP011959, Xanthomonas oryzae pv. oryzicola, Xanthomonas oryzae pv. oryzicola strain CFBP7341, complete genome., 07-AUG-2015
-# GFF3 saved to ./Xoc_GCA_001042835.gbff.gz.gff
-(base) 
+```
+  
 
 ```bash
 mv Xo*gff annotations
