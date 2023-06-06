@@ -303,29 +303,34 @@ cd /home/jovyan/training_bacterial_comparative_genomics/jupyter
 !!! question "Exercice"
         Follow the same process to include a new track for tRNA in your Circos
 
-## Retrieve public genomes available for comparison
+# Retrieve public genomes available for comparison
 
 
-Public genomes can be retrived using NCBI : https://www.ncbi.nlm.nih.gov/datasets/genomes/
+Public genomes can be retrived using NCBI : 
+[https://www.ncbi.nlm.nih.gov/datasets/genomes/](https://www.ncbi.nlm.nih.gov/datasets/genomes/)
+
+!!! question "Questions"
+        How many public genomes of Xanthomonas have been released in Genbank? 
+
+        How many genomes are complete?
+
+Alternatively, one can use the remote file to explore Genbank releases of genomes.
+[https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt](https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt)
+
+Using the wget command, retrieve the prokaryotes.txt file hosted at NCBI.
 
 
-wget https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt
-     
---2022-06-10 15:26:58--  https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt
-Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.13, 130.14.250.11, 2607:f220:41e:250::11, ...
-Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.13|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 130422440 (124M) [text/plain]
-Saving to: ‘prokaryotes.txt’
+!!! question "Questions"
+        How many public genomes of Xanthomonas oryzae have been released in Genbank? How many genomes are complete?
 
-prokaryotes.txt     100%[===================>] 124.38M  20.1MB/s    in 7.5s    
+??? example "Solution"
+    ```bash
+    wget https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt
+    ```
 
-2022-06-10 15:27:06 (16.6 MB/s) - ‘prokaryotes.txt’ saved [130422440/130422440]
-
-
-grep "Xanthomonas oryzae pv. oryzae" prokaryotes.txt | grep -c 'chromosome:'
-     
-95
+    ```bash
+    grep "Xanthomonas oryzae pv. oryzae" prokaryotes.txt | grep -c 'chromosome:'
+    ```
 
 grep "Xanthomonas oryzae pv. oryzicola" prokaryotes.txt | grep -c 'chromosome:'
      
