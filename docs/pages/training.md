@@ -339,7 +339,7 @@ Using the wget command, retrieve the prokaryotes.txt file hosted at NCBI.
     grep "Xanthomonas oryzae pv. oryzicola" prokaryotes.txt | grep -c 'chromosome:'
     ```
 
-Now, retrieve the genome files (fasta and annotations) of the first 3 Xoo and first 3 Xoc (as they appear in the file)
+Using metadata contained in the file, retrieve the genome files (fasta and annotations) of the first 3 complete genome of Xoo (Xanthomonas oryzae pv. oryzae) (as they appear in the file)
 
 ??? example "Solution"
     ```bash
@@ -357,27 +357,24 @@ Now, retrieve the genome files (fasta and annotations) of the first 3 Xoo and fi
     wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/042/835/GCA_001042835.1_ASM104283v1/GCA_001042835.1_ASM104283v1_genomic.gbff.gz -O Xoc_GCA_001042835.gbff.gz
     ```
      
-Retrieve 3 Xoo genomes (fasta and annotations)
+Do the same for retrieving the first 3 complete genome of Xoc (Xanthomonas oryzae pv. oryzicola)
 
-grep "Xanthomonas oryzae pv. oryzae" prokaryotes.txt | grep 'chromosome:' | head -3
+??? example "Solution"
+    ```bash
+    grep "Xanthomonas oryzae pv. oryzae" prokaryotes.txt | grep 'chromosome:' | head -3
      
-Xanthomonas oryzae pv. oryzae	64187	PRJNA485465	485465	Proteobacteria	Gammaproteobacteria	4.99067	63.7	chromosome:NZ_CP031697.1/CP031697.1	-	1	4647	3652	2019/02/04	2022/03/27	Complete Genome	Martin Luther University Halle-Wittenberg	SAMN09791860	GCA_004136375.1	-	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/136/375/GCA_004136375.1_ASM413637v1	-	ICMP3125
-Xanthomonas oryzae pv. oryzae	64187	PRJNA269487	269487	Proteobacteria	Gammaproteobacteria	5.09305	63.7	chromosome:NZ_CP040687.1/CP040687.1	-	1	4757	3787	2019/05/28	2022/03/20	Complete Genome	Bacterial Genomics and Evolution Laboratory, CSIR-Institute of Microbial Technology, Sector 39-A, Chandigarh, India	SAMN03252586	GCA_001929235.2	-	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/929/235/GCA_001929235.2_ASM192923v2	-	IXO1088
-Xanthomonas oryzae pv. oryzae	64187	PRJNA497605	497605	Proteobacteria	Gammaproteobacteria	5.05039	63.7	chromosome:NZ_CP033192.1/CP033192.1	-	1	4713	3695	2019/03/19	2022/04/07	Complete Genome	University of Florida	SAMN10261817	GCA_004355825.1	-	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1	-	NX0260
-grep: write error: Broken pipe
-grep: write error: Broken pipe
+    Xanthomonas oryzae pv. oryzae	64187	PRJNA485465	485465	Proteobacteria	Gammaproteobacteria	4.99067	63.7	chromosome:NZ_CP031697.1/CP031697.1	-	1	4647	3652	2019/02/04	2022/03/27	Complete Genome	Martin Luther University Halle-Wittenberg	SAMN09791860	GCA_004136375.1	-	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/136/375/GCA_004136375.1_ASM413637v1	-	ICMP3125
+    Xanthomonas oryzae pv. oryzae	64187	PRJNA269487	269487	Proteobacteria	Gammaproteobacteria	5.09305	63.7	chromosome:NZ_CP040687.1/CP040687.1	-	1	4757	3787	2019/05/28	2022/03/20	Complete Genome	Bacterial Genomics and Evolution Laboratory, CSIR-Institute of Microbial Technology, Sector 39-A, Chandigarh, India	SAMN03252586	GCA_001929235.2	-	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/929/235/GCA_001929235.2_ASM192923v2	-	IXO1088
+    Xanthomonas oryzae pv. oryzae	64187	PRJNA497605	497605	Proteobacteria	Gammaproteobacteria	5.05039	63.7	chromosome:NZ_CP033192.1/CP033192.1	-	1	4713	3695	2019/03/19	2022/04/07	Complete Genome	University of Florida	SAMN10261817	GCA_004355825.1	-	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1	-	NX0260
 
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/136/375/GCA_004136375.1_ASM413637v1/GCA_004136375.1_ASM413637v1_genomic.fna.gz -O Xoo_GCA_004136375.fna.gz
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/929/235/GCA_001929235.2_ASM192923v2/GCA_001929235.2_ASM192923v2_genomic.fna.gz -O Xoo_GCA_001929235.fna.gz
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1/GCA_004355825.1_ASM435582v1_genomic.fna.gz -O Xoo_GCA_004355825.fna.gz
+    wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/136/375/GCA_004136375.1_ASM413637v1/GCA_004136375.1_ASM413637v1_genomic.fna.gz -O Xoo_GCA_004136375.fna.gz
+    wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/929/235/GCA_001929235.2_ASM192923v2/GCA_001929235.2_ASM192923v2_genomic.fna.gz -O Xoo_GCA_001929235.fna.gz
+    wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1/GCA_004355825.1_ASM435582v1_genomic.fna.gz -O Xoo_GCA_004355825.fna.gz
 
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/136/375/GCA_004136375.1_ASM413637v1/GCA_004136375.1_ASM413637v1_genomic.gbff.gz -O Xoo_GCA_004136375.gbff.gz
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/929/235/GCA_001929235.2_ASM192923v2/GCA_001929235.2_ASM192923v2_genomic.gbff.gz -O Xoo_GCA_001929235.gbff.gz
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1/GCA_004355825.1_ASM435582v1_genomic.gbff.gz -O Xoo_GCA_004355825.gbff.gz
-
-gunzip *.fna.gz
-     
-(base) 
+    wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/136/375/GCA_004136375.1_ASM413637v1/GCA_004136375.1_ASM413637v1_genomic.gbff.gz -O Xoo_GCA_004136375.gbff.gz
+    wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/929/235/GCA_001929235.2_ASM192923v2/GCA_001929235.2_ASM192923v2_genomic.gbff.gz -O Xoo_GCA_001929235.gbff.gz
+    wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/004/355/825/GCA_004355825.1_ASM435582v1/GCA_004355825.1_ASM435582v1_genomic.gbff.gz -O Xoo_GCA_004355825.gbff.gz
+    ```
 
 ## Convert GenBank annotation files to GFF format
 
@@ -427,7 +424,9 @@ gunzip Xoo*fna.gz
 ls Xoo*fna
 ```
 
-Using minimap2, compare 2 genomes of Xoo (Xanthomonas oryzae pv.oryzae): Xoo_GCA_001929235 and Xoo_GCA_004136375.
+Using minimap2, compare 2 genomes of Xoo (Xanthomonas oryzae pv.oryzae): Xoo_GCA_001929235 and Xoo_GCA_004136375.  
+
+Generate an output in paf format named "minimap2.paf".
 
 ??? example "Solution"
     ```bash
@@ -435,22 +434,19 @@ Using minimap2, compare 2 genomes of Xoo (Xanthomonas oryzae pv.oryzae): Xoo_GCA
     ```
 
 !!! question "Exercices"
-        Using awk command applied on the paf output of minimap2, we can try to filter matches between the two genomes. Generate a new file named "links.txt" that contains links between the two genomes. 
+        Using awk command applied on the paf output of minimap2, we can try to filter matches between the two genomes in oreder to visualize connections with circos. Generate a new file named "links.txt" that contains links between the two genomes. 
+        On the other hand, in order to highlight inversion, do the same for matches that are inverted between the two genomes.
 
 ??? example "Solution"
     ```bash
-    awk {'if ((3)>100000 && print $1" "$4'} minimap2.paf >links.txt
-    awk {'if ((3)>100000 && 6" "9'} minimap2.paf >>links.txt
+    awk {'if (($3)>100000 && print $1" "$4'} minimap2.paf >links.txt
+    awk {'if (($3)>100000 && print $6" "$9'} minimap2.paf >>links.txt
     ```
      
-
-??? example "Solution"
-    ```bash
-    awk {'if ((3)>100000 && 1" "4'} minimap2.paf >links_inverted.txt
-    awk {'if ((3)>100000 && 6" "8'} minimap2.paf >>links_inverted.txt
+    awk {'if (($3)>100000 && print $1" "$4'} minimap2.paf >links_inverted.txt
+    awk {'if (($3)>100000 && print $6" "$8'} minimap2.paf >>links_inverted.txt
     ```
      
-(base) (base) 
 Visualize matches between genomes with Circos
 
 cd /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos
