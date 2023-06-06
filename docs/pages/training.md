@@ -303,7 +303,7 @@ cd /home/jovyan/training_bacterial_comparative_genomics/jupyter
 !!! question "Exercice"
         Follow the same process to include a new track for tRNA in your Circos
 
-# Retrieve public genomes available for comparison
+## **Retrieve public genomes available for comparison**
 
 
 Public genomes can be retrived using NCBI : 
@@ -321,7 +321,13 @@ Using the wget command, retrieve the prokaryotes.txt file hosted at NCBI.
 
 
 !!! question "Questions"
-        How many public genomes of Xanthomonas oryzae have been released in Genbank? How many genomes are complete?
+        Can we find the same number of Xanthomonas genomes from this file?
+
+        How many public genomes of Xanthomonas oryzae species have been released in Genbank? 
+
+        How many genomes are complete?
+
+        How many public complete genomes of Xanthomonas oryzae, pathovar oryzae are available?
 
 ??? example "Solution"
     ```bash
