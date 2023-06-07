@@ -327,29 +327,31 @@ cd circos
 ./install-unix
 ```
 
-XXX?
+Create a karyotype file for Circos, indicating the name, size (4.6Mb) and color of the chromosome.
+
 ```bash
 echo "chr - Chr 1 0 4600000 black" >karyotype.txt
 ```     
 
+Copy the template of circos configuration file located in the training material.
+
 ```
-cp -rf ../data/circos1.conf /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos/circos1.conf
+cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/data/circos1.conf ./circos1.conf
 ``` 
 
-Edit the Circos configuration file (circos1.conf) to adapt and customize your Circos image
+Edit the Circos configuration file (circos1.conf) to adapt and customize your Circos image. 
+
+Launch circos by specifying your circos configuration file with `-conf` option
+
 ```bash
-cd /home/jovyan/training_bacterial_comparative_genomics/jupyter/circos
-bin/circos -conf circos1.conf
+circos -conf circos1.conf
 ```     
 
 ```bash
 cp -rf circos.png circos1.png
 ```
-
-XXX?
-```bash 
-cd /home/jovyan/training_bacterial_comparative_genomics/jupyter
-```
+This should result in a circular representation of genes along your chromosome as two distinct tracks.  
+An additional track shows the GC skew.
 
 ![](images/circos1.svg)
 
