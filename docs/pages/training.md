@@ -25,11 +25,11 @@ wget https://panexplorer.southgreen.fr/data/mysample.fastq.gz
      
 
 !!! question
-        How many reads are there in the raw Fastq file?
+        Using a unix command, count how many reads are in the raw Fastq file?
 
 ??? example "Solution"
     ```bash
-    zcat raw_data/CIX4108.sample.fastq.gz | wc -l
+    zgrep -c 'barcode=' mysample.fastq.gz
     ```
 
 ## **Genome Assembly (from Oxford Nanopore Technologies (ONT) long reads) (using Flye)**
@@ -52,7 +52,7 @@ conda activate flye
 We can now run the assembly   
 
 ```bash
-flye --nano-raw {{extra.project_path}}/training_bcg/raw_data/CIX4108.sample.fastq -o assembly >>flye.log 2>&1
+flye --nano-raw {{extra.project_path}}/training_bcg/raw_data/mysample.fastq.gz -o assembly >>flye.log 2>&1
 ```
 
 As this task is a high time consuming step, we can stop the tool with `CTRL-C` and download the expected output:
