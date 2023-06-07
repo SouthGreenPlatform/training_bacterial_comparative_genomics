@@ -305,7 +305,21 @@ Circos input file must respect the following format with space separator
      
 ## **Visualize genome annotation (using Circos)**
 
-Install Circos in the terminal by typing these commands
+Create a directory for circos and move into this directory dedicated for the task.
+
+```bash
+mkdir -p {{extra.project_path}}/training_bcg/circos
+cd {{extra.project_path}}/training_bcg/circos
+```
+
+
+Load the appropriate module for circos (module load) or install Circos by cloning the GitHub repository
+
+```
+module load bioinfo/circos/0.69-6
+```
+
+or
 
 ```bash
 git clone https://github.com/vigsterkr/circos.git
