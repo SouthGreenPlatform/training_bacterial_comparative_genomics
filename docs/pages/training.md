@@ -443,13 +443,6 @@ Do the same for retrieving the first 3 complete genomes of Xoc (Xanthomonas oryz
 
 ## **Convert GenBank annotation files to GFF format**
 
-Create a new directory named "annotations" and move annotations files into this new directory  
-
-```bash
-mkdir -p {{extra.project_path}}/training_bcg/annotations
-cd {{extra.project_path}}/training_bcg/annotations
-```
-
 We will make use of Perl scripts for converting genbank files to GFF format:
 [https://github.com/bioperl/bioperl-live.git](https://github.com/bioperl/bioperl-live.git)
 
@@ -494,6 +487,7 @@ Generate an output in paf format named "minimap2.paf".
 
 ??? example "Solution"
     ```bash
+    module load bioinfo/minimap2/2.24
     minimap2 Xoo_GCA_001929235.fna Xoo_GCA_004136375.fna -o minimap2.paf
     ```
 
@@ -503,12 +497,8 @@ Generate an output in paf format named "minimap2.paf".
 
 ??? example "Solution"
     ```bash
-    awk {'if (($4-$3)>100000 && ($5 =="+"))print NR-1" "$1" "$4'} minimap2.paf >links.txt
-    awk {'if (($4-$3)>100000 && ($5 =="+"))print NR-1" "$6" "$9'} minimap2.paf >>links.txt
-    
-    awk {'if (($4-$3)>100000 && ($5 =="-"))print NR-1" "$1" "$4'} minimap2.paf >links_inverted.txt
-    awk {'if (($4-$3)>100000 && ($5 =="-"))print NR-1" "$9" "$8'} minimap2.paf >>links_inverted.txt
-
+    awk {'if (($4-$3)>100000 && ($5 =="+"))print NR-1" "$1" "$3" "$4"\n"NR-1" "$6" "$8" "$9'} minimap2.paf >links.txt
+    awk {'if (($4-$3)>100000 && ($5 =="-"))print NR-1" "$1" "$3" "$4"\n"NR-1" "$6" "$9" "$8'} minimap2.paf >links_inverted.txt
     ```
      
 Visualize matches between genomes with Circos
@@ -554,7 +544,7 @@ chromosomes_reverse = CP040687.1
 Launch circos for visualization
 
 ```bash
-bin/circos -conf circos2.conf
+circos/bin/circos -conf circos2.conf
 ```
      
 ![](images/circos2.png)
