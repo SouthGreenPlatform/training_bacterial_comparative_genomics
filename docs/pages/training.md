@@ -85,7 +85,7 @@ First, load the appropriate module for running singularity and run the `mob_reco
 
 ```
 module load system/singularity/3.6.0
-singularity exec --bind {{extra.project_path}}/training_bcg/mob_recon/:/tmp mob_suite_3.0.3.sif mob_recon -i /tmp/../assembly/assembly_precomputed.fasta -o /tmp/assembly.mob_recon >>mob_recon.log 2>&1
+singularity exec --bind {{extra.project_path}}/training_bcg/mob_recon/:/tmp mob_suite_3.0.3.sif mob_recon -i /tmp/../assembly/assembly_precomputed.fasta -o /tmp/assembly.mob_recon
 
 singularity exec {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/mob_suite_3.0.3.sif mob_recon -i assembly/assembly_precomputed.fasta -o assembly.mob_recon >>mob_recon.log 2>&1
 ```     
