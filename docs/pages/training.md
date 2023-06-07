@@ -1,8 +1,8 @@
 # Handsome bacterial comparative genomics
 
-## **First commands**
+## **First commands for preparing the working environment**
 
-First create your working environment:
+First create your working directory:
 
 ```bash
 mkdir -p {{extra.project_path}}/training_bcg
@@ -20,7 +20,7 @@ We also need some raw data:
 ```bash
 mkdir raw_data
 cd raw_data
-wget http://bioinfo-web.mpl.ird.fr/ideogram/CIX4108.sample.fastq.gz
+wget https://panexplorer.southgreen.fr/data/mysample.fastq.gz
 ```
      
 
@@ -41,7 +41,8 @@ mkdir -p {{extra.project_path}}/training_bcg/assembly
 cd {{extra.project_path}}/training_bcg/assembly
 ```
 
-We will use Flye to perform the genome assembly. Let's start by installing the tool:
+We will use Flye to perform the genome assembly. 
+Load the appropriate module for flye (module load) or install the tool locally with conda 
 
 ```bash
 conda create -n flye -c bioconda flye
