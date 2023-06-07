@@ -81,13 +81,15 @@ cd {{extra.project_path}}/training_bcg/mob_recon
 ```
 
 We will run MOB-suite using a singularity image that can be found in the training repository.  
-First, load the appropriate module for running singularity and run the `mob_recon` utility. Use the ``--bind` option to bind your current directory on the host to `/mnt` in the container
 
-```
+Run the `mob_recon` utility using singularity image (`/scratch3/TP_bcg/mob_suite_3.0.3.sif`) to separate chromosome and plasmid contigs  
+First, load the appropriate module for running singularity
+Use the `--bind` option to bind your current directory on the host to `/mnt` in the container
+
+```bash
 module load system/singularity/3.6.0
-singularity exec --bind {{extra.project_path}}/training_bcg/mob_recon/:/tmp mob_suite_3.0.3.sif mob_recon -i /tmp/../assembly/assembly_precomputed.fasta -o /tmp/assembly.mob_recon
-
-singularity exec {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/mob_suite_3.0.3.sif mob_recon -i assembly/assembly_precomputed.fasta -o assembly.mob_recon >>mob_recon.log 2>&1
+cp -rf /scratch3/TP_bcg/mob_suite_3.0.3.sif .
+singularity exec --bind {{extra.project_path}}/training_bcg/mob_recon/:/tmp mob_suite_3.0.3.sif mob_recon -i /tmp/assembly_precomputed.fasta -o /tmp/assembly.mob_recon
 ```     
 
 The precomputed result can be retrieved here
