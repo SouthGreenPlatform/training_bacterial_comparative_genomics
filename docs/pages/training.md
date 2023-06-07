@@ -299,9 +299,9 @@ Circos input file must respect the following format with space separator
 `Chr position value`  
 
 ??? example "Solution"
-      ```bash
-      grep -v 'Sequence' gcskew.txt | awk {'print "Chr "$2+5000" "$3'}  > gcskew.circos.txt
-     ```     
+        ```bash
+        grep -v 'Sequence' gcskew.txt | awk {'print "Chr "$2" "$2+500" "$3'} > gcskew.circos.txt
+        ```     
      
 ## **Visualize genome annotation (using Circos)**
 
@@ -313,13 +313,7 @@ cd {{extra.project_path}}/training_bcg/circos
 ```
 
 
-Load the appropriate module for circos (module load) or install Circos by cloning the GitHub repository
-
-```
-module load bioinfo/circos/0.69-6
-```
-
-or
+Install Circos by cloning the GitHub repository
 
 ```bash
 git clone https://github.com/vigsterkr/circos.git
@@ -344,7 +338,7 @@ Edit the Circos configuration file (circos1.conf) to adapt and customize your Ci
 Launch circos by specifying your circos configuration file with `-conf` option
 
 ```bash
-circos -conf circos1.conf
+circos/bin/circos -conf circos1.conf
 ```     
 
 ```bash
