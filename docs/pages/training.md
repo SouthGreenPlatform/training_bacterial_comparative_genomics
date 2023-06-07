@@ -570,6 +570,7 @@ ls ../public_genomes/Xo*fna >list_genomes.txt
 ```  
 
 ```
+module load bioinfo/fastani/1.33
 fastANI --rl list_genomes.txt --ql list_genomes.txt -o fastani.out --matrix
 ```
 
@@ -595,7 +596,9 @@ Check that genomes are closer within the same pathovar than between pathovars.
 How to visualize ANI as heatmap matrix?
 
 ```bash
-perl ../convertANI.pl fastani.out.matrix >fastani.out.matrix.completed
+cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/scripts/convertANI.pl .
+cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/scripts/heatmaply.R .
+perl convertANI.pl fastani.out.matrix >fastani.out.matrix.completed
 ```
 
 Install using the R interface the library optparse and heatmaply
