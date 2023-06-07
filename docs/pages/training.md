@@ -135,6 +135,12 @@ conda create -n prokka -c conda-forge -c bioconda prokka
 conda activate prokka
 ```
 
+List the database that will be used by prokka for annotation
+
+```
+prokka --listdb
+```
+
 We can now launch the annotation: 
 
 ```bash
@@ -214,6 +220,8 @@ head -10 prokka_out/assembly.gff
         contig_1_circular_rotated	Prodigal:002006	CDS	8579	9340	.	+	0	ID=GBGACGDJ_00007;eC_number=3.4.-.-;Name=bepA_1;gene=bepA_1;inference=ab initio prediction:Prodigal:002006,protein motif:HAMAP:MF_00997;locus_tag=GBGACGDJ_00007;product=Beta-barrel assembly-enhancing protease
         contig_1_circular_rotated	Prodigal:002006	CDS	9617	10810	.	+	0	ID=GBGACGDJ_00008;inference=ab initio prediction:Prodigal:002006;locus_tag=GBGACGDJ_00008;product=hypothetical protein
 
+Check that prokka assign a functional COG annotation in genbank or gff files.
+
 
 ```bash
 grep COG prokka_out/assembly.gff | head -5
@@ -231,7 +239,15 @@ grep COG prokka_out/assembly.gff | head -5
 ## **GC content analysis (SkewIT)**
 
 
-We will now use SkewIT for analyzing GC Skew.
+We will now use SkewIT for analyzing GC Skew.  
+
+GC skew is a statistical method for measuring strand-specific guanine overrepresentation.  
+The GC skew is proven to be useful as the indicator of the DNA leading strand, lagging strand, replication origin, and replication terminal.  
+The GC skew is positive and negative in the leading strand and in the lagging strand respectively; therefore, it is expected to see a switch in GC skew sign just at the point of DNA replication origin and terminus
+
+GC skew = (G - C)/(G + C)
+
+
 Let's start by creating and moving into a directory dedicated for the task:
 
 ```bash
