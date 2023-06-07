@@ -101,7 +101,7 @@ We can have a look at the report:
 
 ??? example "Solution"
     ```bash
-    more contig_report.txt
+    more assembly.mob_recon/contig_report.txt
     ```
     ```
     sample_id	molecule_type	primary_cluster_id	secondary_cluster_id	contig_id	size	gc	md5	circularity_status	rep_type(s)	rep_type_accession(s)	relaxase_type(s)	relaxase_type_accession(s)	mpf_type	mpf_type_accession(s)	orit_type(s)	orit_accession(s)	predicted_mobility	mash_nearest_neighbor	mash_neighbor_distance	mash_neighbor_identification	repetitive_dna_id	repetitive_dna_type	filtering_reason
@@ -119,7 +119,7 @@ Annotation will be performed on the chromosome file only (not plasmid). A symbol
 ```bash
 mkdir -p {{extra.project_path}}/training_bcg/prokka
 cd {{extra.project_path}}/training_bcg/prokka
-ln -s {{extra.project_path}}/training_bcg/mob_recon/chromosome.fasta
+ln -s {{extra.project_path}}/training_bcg/mob_recon/assembly.mob_recon/chromosome.fasta
 ```
 
 We will use Prokka to perform the genome annotation.
