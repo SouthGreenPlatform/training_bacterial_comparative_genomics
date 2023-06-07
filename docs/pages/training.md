@@ -388,6 +388,14 @@ Using the wget command, retrieve the prokaryotes.txt file hosted at NCBI.
     ```
 
     ```bash
+    grep "Xanthomonas" prokaryotes.txt
+    ```
+
+    ```bash
+    grep "Xanthomonas" prokaryotes.txt | grep -c 'chromosome:'
+    ```
+
+    ```bash
     grep "Xanthomonas oryzae pv. oryzae" prokaryotes.txt | grep -c 'chromosome:'
     ```
 
@@ -395,7 +403,8 @@ Using the wget command, retrieve the prokaryotes.txt file hosted at NCBI.
     grep "Xanthomonas oryzae pv. oryzicola" prokaryotes.txt | grep -c 'chromosome:'
     ```
 
-Using metadata contained in the file, retrieve the genome files (fasta and annotations) of the first 3 complete genome of Xoo (Xanthomonas oryzae pv. oryzae) (as they appear in the file)
+Using metadata contained in the file, retrieve the genome files (fasta and annotations) of the first 3 complete genome of Xoo (Xanthomonas oryzae pv. oryzae) (as they appear in the file).  
+Name each genome file with the prefix Xoo_
 
 ??? example "Solution"
     ```bash
@@ -413,7 +422,7 @@ Using metadata contained in the file, retrieve the genome files (fasta and annot
     wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/042/835/GCA_001042835.1_ASM104283v1/GCA_001042835.1_ASM104283v1_genomic.gbff.gz -O Xoc_GCA_001042835.gbff.gz
     ```
      
-Do the same for retrieving the first 3 complete genome of Xoc (Xanthomonas oryzae pv. oryzicola)
+Do the same for retrieving the first 3 complete genomes of Xoc (Xanthomonas oryzae pv. oryzicola) with prefix Xoc_
 
 ??? example "Solution"
     ```bash
@@ -436,9 +445,9 @@ Do the same for retrieving the first 3 complete genome of Xoc (Xanthomonas oryza
 
 Create a new directory named "annotations" and move annotations files into this new directory  
 
-```
-mkdir annotations
-cp -rf Xo*gbff.gz annotations
+```bash
+mkdir -p {{extra.project_path}}/training_bcg/annotations
+cd {{extra.project_path}}/training_bcg/annotations
 ```
 
 We will make use of Perl scripts for converting genbank files to GFF format:
