@@ -506,8 +506,7 @@ Visualize matches between genomes with Circos
 We will use and adapt a template for circos configuration file for visualizing circos with links.
 
 ```
-cd {{extra.project_path}}/training_bacterial_comparative_genomics/jupyter/circos
-cp -rf ../../data/circos2.conf circos2.conf
+cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/data/circos2.conf circos2.conf
 ```
      
 Edit the Circos configuration file to add informations about links
@@ -518,7 +517,7 @@ Edit the Circos configuration file to add informations about links
     z            = 50
     color        = nyt_red
     thickness    = 3
-    file         = /training_bacterial_comparative_genomics/jupyter/links.txt
+    file         = {{extra.project_path}}/training_bcg/public_genomes/links.txt
     bezier_radius_purity = 0.2
     ribbon      = yes
     crest = 1
@@ -528,7 +527,7 @@ Edit the Circos configuration file to add informations about links
     z            = 50
     color        = nyt_blue
     thickness    = 3
-    file         = /home/jovyan/training_bacterial_comparative_genomics/jupyter/links_inverted.txt
+    file         = {{extra.project_path}}/training_bcg/public_genomes/links_inverted.txt
     bezier_radius_purity = 0.2
     ribbon      = yes
     crest = 1
