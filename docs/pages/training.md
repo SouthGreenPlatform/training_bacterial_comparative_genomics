@@ -461,12 +461,12 @@ chmod 755 bioperl-live/bin/*
 ```
 
 ``` 
-perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoo_GCA_004136375.gbff.gz
-perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoo_GCA_001929235.gbff.gz
-perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoo_GCA_004355825.gbff.gz
-perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoc_GCA_001021915.gbff.gz
-perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoc_GCA_000940825.gbff.gz
-perl bioperl-live/bin/bp_genbank2gff3 annotations/Xoc_GCA_001042835.gbff.gz
+perl bioperl-live/bin/bp_genbank2gff3 Xoo_GCA_004136375.gbff.gz
+perl bioperl-live/bin/bp_genbank2gff3 Xoo_GCA_001929235.gbff.gz
+perl bioperl-live/bin/bp_genbank2gff3 Xoo_GCA_004355825.gbff.gz
+perl bioperl-live/bin/bp_genbank2gff3 Xoc_GCA_001021915.gbff.gz
+perl bioperl-live/bin/bp_genbank2gff3 Xoc_GCA_000940825.gbff.gz
+perl bioperl-live/bin/bp_genbank2gff3 Xoc_GCA_001042835.gbff.gz
 ```
   
 
