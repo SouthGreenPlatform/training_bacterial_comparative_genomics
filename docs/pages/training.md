@@ -58,7 +58,7 @@ flye --nano-raw {{extra.project_path}}/training_bcg/raw_data/mysample.fastq.gz -
 As this task is a high time consuming step, we can stop the tool with `CTRL-C` and download the expected output:
 
 ```bash
-cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/data/precomputed_assembly/assembly_precomputed.fasta assembl .
+cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/data/precomputed_assembly/assembly_precomputed.fasta .
 ```
 
 !!! question
