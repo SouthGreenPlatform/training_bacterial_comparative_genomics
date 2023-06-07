@@ -603,13 +603,19 @@ perl convertANI.pl fastani.out.matrix >fastani.out.matrix.completed
 
 Install using the R interface the library optparse and heatmaply
 
+```bash
+module load bioinfo/R/4.2.2
+R
 ```
+
+```R
 install.packages("optparse")
 install.packages("heatmaply")
+quit()
 ```
 
 ```bash
-Rscript ../heatmaply.R -f fastani.out.matrix.completed
+Rscript heatmaply.R -f fastani.out.matrix.completed
 ```
 
 ![](images/ani.PNG)
