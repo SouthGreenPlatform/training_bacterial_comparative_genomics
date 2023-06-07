@@ -25,20 +25,15 @@ By accepting to participate in the course, you agree to follow the [Code of Cond
 
 ## Schedule
 
-## Teachers
+## Schedule
+
+8 June
 
 * Genome assembly
 * Identification of plasmid scaffolds
 * Annotation (structural and functional annotation) of bacterial genomes
 * Circos representation of genomes
 * Pairwise comparison of genomes (ANI)
-
-8 June:   
-* Genome assembly  
-* Identification of plasmid scaffolds  
-* Annotation (structural and functional annotation) of bacterial genomes  
-* Circos representation of genomes  
-* Pairwise comparison of genomes (ANI)  
 
 
 9 June:  
