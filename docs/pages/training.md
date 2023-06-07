@@ -84,7 +84,8 @@ We will run MOB-suite using a singularity image that can be found in the trainin
 First, load the appropriate module for running singularity and run the `mob_recon` utility.
 
 ```
-singularity exec /home/jovyan/mob_suite_3.0.3.sif mob_recon -i assembly/assembly_precomputed.fasta -o assembly.mob_recon >>mob_recon.log 2>&1
+module load system/singularity/3.6.0
+singularity exec {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/mob_suite_3.0.3.sif mob_recon -i assembly/assembly_precomputed.fasta -o assembly.mob_recon >>mob_recon.log 2>&1
 ```     
 
 The precomputed result can be retrieved here
@@ -110,7 +111,9 @@ more contig_report.txt
 ## **Genome annotation (using Prokka)**
 
 We will now annotate the chromosome.
-Let's start by creating and moving into a directory dedicated for the task:
+Let's start by creating and moving into a directory dedicated for the task.  
+
+Annotation will be performed on the chromosome file only (not plasmid). A symbolic link can be created to have the chromosome.fasta file in the current directory.
 
 ```bash
 mkdir -p {{extra.project_path}}/training_bcg/prokka
@@ -118,7 +121,14 @@ cd {{extra.project_path}}/training_bcg/prokka
 ln -s {{extra.project_path}}/training_bcg/mob_recon/chromosome.fasta
 ```
 
-We will use Prokka to perform the genome annotation. Let's start by installing the tool:
+We will use Prokka to perform the genome annotation.
+Load the appropriate module for prokka (module load) or install the tool locally with conda
+
+```bash
+module load bioinfo/prokka/1.14.6
+```
+
+or
 
 ```bash
 conda create -n prokka -c conda-forge -c bioconda prokka
