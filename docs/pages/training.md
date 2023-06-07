@@ -614,6 +614,8 @@ install.packages("heatmaply")
 quit()
 ```
 
+Launch the R script to generate a figure showing a heatmap of ANI values
+
 ```bash
 Rscript heatmaply.R -f fastani.out.matrix.completed
 ```
