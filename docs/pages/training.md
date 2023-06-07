@@ -234,6 +234,14 @@ grep COG prokka_out/assembly.gff | head -5
         contig_1_circular_rotated	Prodigal:002006	CDS	3777	4883	.	+	0	ID=GBGACGDJ_00004;Name=recF;db_xref=COG:COG1195;gene=recF;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A7H0;locus_tag=GBGACGDJ_00004;product=DNA replication and repair protein RecF
         contig_1_circular_rotated	Prodigal:002006	CDS	4999	7443	.	+	0	ID=GBGACGDJ_00005;eC_number=5.6.2.2;Name=gyrB;db_xref=COG:COG0187;gene=gyrB;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A2I3;locus_tag=GBGACGDJ_00005;product=DNA gyrase subunit B
 
+Using awk for extracting information, prepare two files named "genes_plus.txt" and "genes_minus.txt" for representing genes with Circos, located respectively in positive and negative strand, with following format
+Chr start end
+
+??? example "Solution"
+      ```bash
+      awk {'if ($3 == "CDS" && $7 == "+")print "Chr "$4" "$5'} prokka_out/assembly.gff >genes_plus.txt
+      awk {'if ($3 == "CDS" && $7 == "-")print "Chr "$4" "$5'} prokka_out/assembly.gff >genes_minus.txt
+      ```
 
 
 ## **GC content analysis (SkewIT)**
@@ -284,16 +292,13 @@ head -5 gcskew.txt
         contig_1_circular_rotated	1500	-0.01010101
 
 
-XXX
+Using awk, prepare a file named "gcskew.circos.txt" for representing GC skew with Circos with following format 
+Chr position value  
 
-```bash
-grep -v 'Sequence' gcskew.txt | awk {'print "Chr "2+5000" "$3'}  > gcskew.circos.txt
-```     
-
-```bash
-awk {'if ($3 == "CDS" && $7 == "+")print "Chr "5'} prokka_out/assembly.gff >genes_plus.txt
-awk {'if ($3 == "CDS" && $7 == "-")print "Chr "5'} prokka_out/assembly.gff >genes_minus.txt
-```
+??? example "Solution"
+      ```bash
+      grep -v 'Sequence' gcskew.txt | awk {'print "Chr "$2+5000" "$3'}  > gcskew.circos.txt
+     ```     
      
 ## **Visualize genome annotation (using Circos)**
 
