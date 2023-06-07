@@ -41,7 +41,7 @@ mkdir -p {{extra.project_path}}/training_bcg/assembly
 cd {{extra.project_path}}/training_bcg/assembly
 ```
 
-We will use Flye to perform the genome assembly. 
+We will use Flye to perform the genome assembly.   
 Load the appropriate module for flye (module load) or install the tool locally with conda 
 
 ```bash
@@ -52,17 +52,17 @@ conda activate flye
 We can now run the assembly   
 
 ```bash
-flye --nano-raw /data2/formation/Bacterial_genomics/raw_data/CIX4108.sample.fastq -o assembly >>flye.log 2>&1
+flye --nano-raw {{extra.project_path}}/training_bcg/raw_data/CIX4108.sample.fastq -o assembly >>flye.log 2>&1
 ```
 
-As this task is time consuming we can stop the tool with `CTRL-C` and download the expected output:
+As this task is a high time consuming step, we can stop the tool with `CTRL-C` and download the expected output:
 
 ```bash
 cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/data/precomputed_assembly/assembly_precomputed.fasta assembl .
 ```
 
 !!! question
-        How many sequence do we have?
+        How many contigs could be assembled from reads?
 
 ??? example "Solution"
     ```bash
