@@ -25,15 +25,20 @@ By accepting to participate in the course, you agree to follow the [Code of Cond
 
 ## Schedule
 
-8 June:  
-* Genome assembly
-* Identification of plasmid scaffolds
-* Annotation (structural and functional annotation) of bacterial genomes
-* Circos representation of genomes
-* Pairwise comparison of genomes (ANI)
+8 June:   
+* Genome assembly  
+* Identification of plasmid scaffolds  
+* Annotation (structural and functional annotation) of bacterial genomes  
+* Circos representation of genomes  
+* Pairwise comparison of genomes (ANI)  
 
 
-9 June: analyse comparative de contenu en gènes, PAV (Presence/Absence Variation), notion de pan-génome/core-génome, pan-GWAS...
+9 June:  
+* Comparative analysis of gene content  
+* PAV (Presence/Absence Variation))  
+* Pan-genome/core-genome aspects  
+* pan-GWAS  
+* Pan-genome graph approach  
 
 
 ## Location
