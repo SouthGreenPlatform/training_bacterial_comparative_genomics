@@ -11,7 +11,7 @@
     width="20" height="20"/>
     8 - 9 June, 2023
 
-This course aims at discovering the main bioinformatics for comparing bacterial genomes, from pairwise comparison to pan-genome approach.
+This course aims at discovering the main bioinformatics for comparing bacterial genomes, from pairwise comparison to a large scale pan-genome analysis.
 
 
 ## Course content and learning outcomes
@@ -25,7 +25,16 @@ By accepting to participate in the course, you agree to follow the [Code of Cond
 
 ## Schedule
 
-...
+8 June:  
+* Genome assembly
+* Identification of plasmid scaffolds
+* Annotation (structural and functional annotation) of bacterial genomes
+* Circos representation of genomes
+* Pairwise comparison of genomes (ANI)
+
+
+9 June: analyse comparative de contenu en gènes, PAV (Presence/Absence Variation), notion de pan-génome/core-génome, pan-GWAS...
+
 
 ## Location
 
