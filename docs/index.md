@@ -27,9 +27,11 @@ By accepting to participate in the course, you agree to follow the [Code of Cond
 
 ## Teachers
 
-* Alexis Dereeper (course leader)
-* Jacques Dainat
-* Florian Charriat
+* Genome assembly
+* Identification of plasmid scaffolds
+* Annotation (structural and functional annotation) of bacterial genomes
+* Circos representation of genomes
+* Pairwise comparison of genomes (ANI)
 
 8 June:   
 * Genome assembly  
