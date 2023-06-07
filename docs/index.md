@@ -17,13 +17,12 @@ This course aims at discovering the main bioinformatics for comparing bacterial 
 ## Course content and learning outcomes
 
 The following topics and tools are covered in the course:
+Genome assembly, Identification of plasmid scaffolds, Annotation, circos visualization, ANI, pan-gene atlas, pan-GWAS, pangenome graph
 
 
 ## Application
 
 By accepting to participate in the course, you agree to follow the [Code of Conduct](pages/course-information/code-of-conduct.md).
-
-## Schedule
 
 ## Schedule
 
@@ -36,7 +35,8 @@ By accepting to participate in the course, you agree to follow the [Code of Cond
 * Pairwise comparison of genomes (ANI)
 
 
-9 June:  
+9 June
+ 
 * Comparative analysis of gene content  
 * PAV (Presence/Absence Variation))  
 * Pan-genome/core-genome aspects  
