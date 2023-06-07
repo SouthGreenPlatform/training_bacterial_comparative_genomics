@@ -80,6 +80,9 @@ mkdir -p {{extra.project_path}}/training_bcg/mob_recon
 cd {{extra.project_path}}/training_bcg/mob_recon
 ```
 
+We will run MOB-suite using a singularity image that can be found in the training repository.  
+First, load the appropriate module for running singularity and run the `mob_recon` utility.
+
 ```
 singularity exec /home/jovyan/mob_suite_3.0.3.sif mob_recon -i assembly/assembly_precomputed.fasta -o assembly.mob_recon >>mob_recon.log 2>&1
 ```     
