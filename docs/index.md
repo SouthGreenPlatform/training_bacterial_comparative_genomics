@@ -25,6 +25,12 @@ By accepting to participate in the course, you agree to follow the [Code of Cond
 
 ## Schedule
 
+## Teachers
+
+* Alexis Dereeper (course leader)
+* Jacques Dainat
+* Florian Charriat
+
 8 June:   
 * Genome assembly  
 * Identification of plasmid scaffolds  
