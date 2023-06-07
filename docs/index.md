@@ -1,4 +1,4 @@
-# Tools for Reproducible Research
+# Bacterial comparative genomics
 
 ![](pages/images/achievement-agreement-arms-1068523.jpg)
 
@@ -11,7 +11,7 @@
     width="20" height="20"/>
     8 - 9 June, 2023
 
-Here put the course overview
+This course aims at discovering the main bioinformatics for comparing bacterial genomes, from pairwise comparison to pan-genome approach.
 
 
 ## Course content and learning outcomes
