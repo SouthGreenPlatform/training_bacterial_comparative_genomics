@@ -556,11 +556,17 @@ Do the same process for the comparing one Xoo and one Xoc
 
 ## **Compare genome similarity using Average Nucleotide Identity (ANI) (fastANI)**
 
+Let's start by creating a new directory "ANI" and moving into this directory dedicated for the task:
+
+```bash
+mkdir -p {{extra.project_path}}/training_bcg/ANI
+cd {{extra.project_path}}/training_bcg/ANI
+```
 
 Create a file that contains the list of genomes to be taken as input
 
 ```
-ls Xo*fna >list_genomes.txt
+ls ../public_genomes/Xo*fna >list_genomes.txt
 ```  
 
 ```
