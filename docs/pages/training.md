@@ -366,6 +366,13 @@ Public genomes can be retrived using NCBI :
 Alternatively, one can use the remote file to explore Genbank releases of genomes.
 [https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt](https://ftp.ncbi.nlm.nih.gov/genomes/GENOME_REPORTS/prokaryotes.txt)
 
+Let's start by creating a new directory "public_genomes" and moving into this directory dedicated for the task:
+
+```bash
+mkdir -p {{extra.project_path}}/training_bcg/public_genomes
+cd {{extra.project_path}}/training_bcg/public_genomes
+```
+
 Using the wget command, retrieve the prokaryotes.txt file hosted at NCBI.
 
 
