@@ -256,7 +256,7 @@ cd {{extra.project_path}}/training_bcg/skewit
 ln -s {{extra.project_path}}/training_bcg/mob_recon/chromosome.fasta
 ```
 
-We will use SkewIT for analyzing GC Skew. Let's start by installing the tool:
+Let's start by installing the tool:
 
 
 ```bash
@@ -266,6 +266,7 @@ git clone https://github.com/jenniferlu717/SkewIT.git
 We can now run the analysis:
 
 ```bash
+module load system/python/3.8.12
 python SkewIT/src/gcskew.py -i chromosome.fasta -o gcskew.txt -k 500
 ```
 
