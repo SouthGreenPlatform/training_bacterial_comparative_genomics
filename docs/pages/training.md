@@ -106,12 +106,13 @@ We can have a look at the report:
         Looking at the MOB-SUITE report, does our sequenced sample contain plasmid sequence?
 
 ??? example "Solution"
-    ```
+    ```bash
     more contig_report.txt
+    ```
     > sample_id	molecule_type	primary_cluster_id	secondary_cluster_id	contig_id	size	gc	md5	circularity_status	rep_type(s)	rep_type_accession(s)	relaxase_type(s)	relaxase_type_accession(s)	mpf_type	mpf_type_accession(s)	orit_type(s)	orit_accession(s)	predicted_mobility	mash_nearest_neighbor	mash_neighbor_distance	mash_neighbor_identification	repetitive_dna_id	repetitive_dna_type	filtering_reason
     > assembly_precomputed	chromosome	-	-	contig_1_circular_rotated	4682534	63.833983907004196	cf955654136e9041810a80b8191fa41f	not tested	-	-	MOBP	NC_007507_00032	-	-	-	-	-	-	-	-	-	-	-
     > assembly_precomputed	plasmid	AD399	-	contig_2_circular_rotated	69058	61.861044339540676	475037e138b4ade1836aa05f421c47b8	not tested	rep_cluster_1289	000607__CP000620_00033	MOBP	CP022994_00148	-	-	-	-	-	CP033195	0.0537328	Xanthomonas oryzae pv. oryzae	-	-	-
-    ```
+
 
 ## **Genome annotation (using Prokka)**
 
@@ -239,8 +240,9 @@ grep COG prokka_out/assembly.gff | head -5
         contig_1_circular_rotated	Prodigal:002006	CDS	3777	4883	.	+	0	ID=GBGACGDJ_00004;Name=recF;db_xref=COG:COG1195;gene=recF;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A7H0;locus_tag=GBGACGDJ_00004;product=DNA replication and repair protein RecF
         contig_1_circular_rotated	Prodigal:002006	CDS	4999	7443	.	+	0	ID=GBGACGDJ_00005;eC_number=5.6.2.2;Name=gyrB;db_xref=COG:COG0187;gene=gyrB;inference=ab initio prediction:Prodigal:002006,similar to AA sequence:UniProtKB:P0A2I3;locus_tag=GBGACGDJ_00005;product=DNA gyrase subunit B
 
-Using awk for extracting information, prepare two files named "genes_plus.txt" and "genes_minus.txt" for representing genes with Circos, located respectively in positive and negative strand, with following format
-Chr start end
+Using awk for extracting information, prepare two files named "genes_plus.txt" and "genes_minus.txt" for representing genes with Circos, located respectively in positive and negative strand.
+Circos input file must respect the following format with space separator  
+`Chr start end`
 
 ??? example "Solution"
       ```bash
@@ -297,8 +299,9 @@ head -5 gcskew.txt
         contig_1_circular_rotated	1500	-0.01010101
 
 
-Using awk, prepare a file named "gcskew.circos.txt" for representing GC skew with Circos with following format 
-Chr position value  
+Using awk, prepare a file named "gcskew.circos.txt" for representing GC skew with Circos   
+Circos input file must respect the following format with space separator  
+`Chr position value`  
 
 ??? example "Solution"
       ```bash
