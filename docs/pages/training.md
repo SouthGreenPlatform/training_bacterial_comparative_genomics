@@ -320,6 +320,7 @@ Install Circos by cloning the GitHub repository
 git clone https://github.com/vigsterkr/circos.git
 cd circos
 ./install-unix
+cd ..
 ```
 
 Create a karyotype file for Circos, indicating the name, size (4.6Mb) and color of the chromosome.
