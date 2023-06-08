@@ -300,9 +300,9 @@ Circos input file must respect the following format with space separator
 `Chr position value`  
 
 ??? example "Solution"
-        ```bash
-        grep -v 'Sequence' gcskew.txt | awk {'print "Chr "$2" "$2+500" "$3'} > gcskew.circos.txt
-        ```     
+      ```bash
+      grep -v 'Sequence' gcskew.txt | awk {'print "Chr "$2" "$2+500" "$3'} > gcskew.circos.txt
+      ```     
      
 ## **Visualize genome annotation (using Circos)**
 
