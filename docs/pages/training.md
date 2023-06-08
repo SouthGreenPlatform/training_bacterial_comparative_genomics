@@ -628,11 +628,18 @@ Try to make the same process including our newly assembled genome
 
 ## **Gene content comparison / Pangenome analysis (using Roary)**
 
-Have a look to the help page of the roary program, and launch roary for comparing the gene content of the 6 genomes.
+Have a look to the help page of the roary program.
+
+```bash
+cd {{extra.project_path}}/training_bcg
+module load bioinfo/roary/3.12.0
+roary --help
+```
+
+Launch roary for comparing the gene content of the 6 genomes.
 
 ```
-rm -rf roary_out
-roary -f roary_out annotations/*gff
+roary -f roary_out public_genomes/*gff
 ```
 
 Look at the content of the roary output:
