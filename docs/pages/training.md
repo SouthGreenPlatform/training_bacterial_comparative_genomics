@@ -671,6 +671,7 @@ Soft core genes	(95% <= strains < 99%)	0
 Shell genes	(15% <= strains < 95%)	3763
 Cloud genes	(0% <= strains < 15%)	0
 Total genes	(0% <= strains <= 100%)	6328
+```
 
 In order to explore and represent graphs with roary outputs, we will make use of scripts available in Roary repository.
 
