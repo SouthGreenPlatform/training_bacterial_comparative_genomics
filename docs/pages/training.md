@@ -684,7 +684,7 @@ python Roary/contrib/roary_plots/roary_plots.py roary_out/accessory_binary_genes
 ``` 
 
 ```bash
-query_pan_genome -g roary_out/clustered_proteins -a difference --input_set_one annotations/Xoc_GCA_000940825.gbff.gz.gff,annotations/Xoc_GCA_001021915.gbff.gz.gff,annotations/Xoc_GCA_001021915.gbff.gz.gff --input_set_two annotations/Xoo_GCA_001929235.gbff.gz.gff,annotations/Xoo_GCA_004136375.gbff.gz.gff,annotations/Xoo_GCA_004355825.gbff.gz.gff
+query_pan_genome -g roary_out/clustered_proteins -a difference --input_set_one public_genomes/Xoc_GCA_000940825.gbff.gz.gff,public_genomes/Xoc_GCA_001021915.gbff.gz.gff,public_genomes/Xoc_GCA_001021915.gbff.gz.gff --input_set_two public_genomes/Xoo_GCA_001929235.gbff.gz.gff,public_genomes/Xoo_GCA_004136375.gbff.gz.gff,public_genomes/Xoo_GCA_004355825.gbff.gz.gff
 ```     
 
 ![](images/pangenome_pie.png)
@@ -698,8 +698,8 @@ query_pan_genome -g roary_out/clustered_proteins -a difference --input_set_one a
         Using the scoary program, 
 
 ```
-cp -rf ../data/pangenome_100xantho ./
-cd pangenome_100xantho
+cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/data/pangenome_100xantho {{extra.project_path}}/training_bcg
+cd {{extra.project_path}}/training_bcg/pangenome_100xantho
 ```     
 
 ```bash
