@@ -89,6 +89,7 @@ Use the `--bind` option to bind your current directory on the host to `/mnt` in 
 ```bash
 module load system/singularity/3.6.0
 cp -rf /scratch3/TP_bcg/mob_suite_3.0.3.sif .
+cp -rf /scratch3/TP_bcg/$USER/training_bcg/training_bacterial_comparative_genomics/data/precomputed_assembly/assembly_precomputed.fasta .
 singularity exec --bind {{extra.project_path}}/training_bcg/mob_recon/:/tmp mob_suite_3.0.3.sif mob_recon -i /tmp/assembly_precomputed.fasta -o /tmp/assembly.mob_recon
 ```     
      
@@ -299,9 +300,9 @@ Circos input file must respect the following format with space separator
 `Chr position value`  
 
 ??? example "Solution"
-        ```bash
-        grep -v 'Sequence' gcskew.txt | awk {'print "Chr "$2" "$2+500" "$3'} > gcskew.circos.txt
-        ```     
+      ```bash
+      grep -v 'Sequence' gcskew.txt | awk {'print "Chr "$2" "$2+500" "$3'} > gcskew.circos.txt
+      ```     
      
 ## **Visualize genome annotation (using Circos)**
 
@@ -319,6 +320,7 @@ Install Circos by cloning the GitHub repository
 git clone https://github.com/vigsterkr/circos.git
 cd circos
 ./install-unix
+cd ..
 ```
 
 Create a karyotype file for Circos, indicating the name, size (4.6Mb) and color of the chromosome.
