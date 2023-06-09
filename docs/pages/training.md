@@ -584,15 +584,15 @@ Check that genomes are closer within the same pathovar than between pathovars.
     ```bash
     more fastani.out.matrix 
     ```
-    
-    > 6  
-    > Xoc_GCA_000940825.fna  
-    > Xoc_GCA_001021915.fna	99.149597  
-    > Xoc_GCA_001042835.fna	99.411034	99.196701  
-    > Xoo_GCA_001929235.fna	97.226959	97.219826	97.288483  
-    > Xoo_GCA_004136375.fna	97.313660	97.230530	97.365417	99.582520  
-    > Xoo_GCA_004355825.fna	97.236938	97.235214	97.313324	99.704956	99.590271  
-    
+    ``` 
+    6  
+    Xoc_GCA_000940825.fna  
+    Xoc_GCA_001021915.fna	99.149597  
+    Xoc_GCA_001042835.fna	99.411034	99.196701  
+    Xoo_GCA_001929235.fna	97.226959	97.219826	97.288483  
+    Xoo_GCA_004136375.fna	97.313660	97.230530	97.365417	99.582520  
+    Xoo_GCA_004355825.fna	97.236938	97.235214	97.313324	99.704956	99.590271  
+    ```
 
 How to visualize ANI as heatmap matrix?
 
@@ -694,35 +694,50 @@ query_pan_genome -g roary_out/clustered_proteins -a difference --input_set_one p
 
 
 
-!!! question "Exercises"
-        Using the scoary program, 
+Scoary is designed to take the gene_presence_absence.csv file from Roary as well as a traits file created by the user and calculate the assocations between all genes in the accessory genome and the traits. It reports a list of genes sorted by strength of association per trait.  
+
+For this task, we will use a larger file precalculated with Roary for the comparison of 90 strains. For each strain, we collected the pathovar information and we will use it to define genes potentially associated with pathovar Xoo/Xoc.
 
 ```
 cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/data/pangenome_100xantho {{extra.project_path}}/training_bcg
 cd {{extra.project_path}}/training_bcg/pangenome_100xantho
 ```     
 
+Look into the input files gene_presence_absence.csv and traits.txt
+```
+more gene_presence_absence.csv
+``
+
+```
+more traits.txt
+```
+
+Look at the help page of scoary and run it for defining genes associated with pathovar.
+
 ```bash
+module load bioinfo/scoary/1.6.16
 scoary -t traits.txt -g gene_presence_absence.csv
 ```
 
 !!! question "Questions"
-        How many clusters are specifically present in pathovar oryzae (absent in oryzicola)
+        Considering a p-value threshold 0.01, how many gene clusters are associated with pathovar?
+        How many clusters are specifically present in pathovar oryzae (absent in oryzicola)?
+        How many clusters are specifically present in pathovar oryzicola (absent in oryzae)?
 
 ??? example "Solution"
-    ```bash
-    awk -F "\",\"" {'if (4==0 && 5==75)print $_'} pathovar_*.results.csv | wc -l
-    ```
-    > 28 
 
-!!! question "Questions"
-       How many clusters are specifically present in pathovar oryzicola (absent in oryzae)
-
-??? example "Solution"
-    ```bash
-    awk -F "\",\"" {'if (4==15 && 5==0)print $_'} pathovar_*.results.csv | wc -l
     ```
-    > 110
+    awk -F "\",\"" {'if ($12<0.01)print $_'} pathovar_*.results.csv | wc -l
+    ```
+
+    ```bash
+    awk -F "\",\"" {'if ($4==0 && $5==75)print $_'} pathovar_*.results.csv | wc -l
+    ```
+    
+    ```bash
+    awk -F "\",\"" {'if ($4==15 && $5==0)print $_'} pathovar_*.results.csv | wc -l
+    ```
+
 
 ## **Explore pan-genome with PanExplorer web application** 
 
