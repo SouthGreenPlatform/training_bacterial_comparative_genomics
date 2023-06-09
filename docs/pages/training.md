@@ -567,7 +567,7 @@ cd {{extra.project_path}}/training_bcg/public_genomes
 Create a file that contains the list of genomes to be taken as input
 
 ```
-ls Xo*fna >list_genomes.txt
+ls Xo*fna* >list_genomes.txt
 ```  
 
 ```
