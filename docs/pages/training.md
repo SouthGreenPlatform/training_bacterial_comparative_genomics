@@ -758,7 +758,16 @@ Pangenome analysis based on gene clustering approach will result in a pangene at
 Pangenome can also be reconstructed directly on genomic sequences using pangenome graph approach using minigraph2.
 
 ```
-minigraph -xggs -t16 Xoo_GCA_001929235.fna Xoo_GCA_004136375.fna >Xoo.gfa
+cd {{extra.project_path}}/training_bcg/public_genomes
+module load bioinfo/minigraph/0.15
+minigraph -xggs -t16 Xoo_GCA_001929235.fna Xoo_GCA_004136375.fna >Xoo_pangenome.gfa
+```
+
+Convert GFA into FASTA of the pangenome
+
+```
+module load bioinfo/gfatools/0.5
+gfatools gfa2fa -s Xoo_pangenome.gfa >Xoo_pangenome.fa
 ```
 
 
