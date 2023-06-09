@@ -721,9 +721,9 @@ scoary -t traits.txt -g gene_presence_absence.csv
 ```
 
 !!! question "Questions"
-        Considering a p-value threshold 0.01, how many gene clusters are associated with pathovar?
-        How many clusters are specifically present in pathovar oryzae (absent in oryzicola)?
-        How many clusters are specifically present in pathovar oryzicola (absent in oryzae)?
+        Considering a p-value threshold 0.01, how many gene clusters are associated with pathovar?  
+        How many clusters are specifically present in pathovar oryzae (absent in oryzicola)?  
+        How many clusters are specifically present in pathovar oryzicola (absent in oryzae)?  
 
 ??? example "Solution"
 
