@@ -90,3 +90,4 @@ extra:
 nav:
     - Home: index.md
     - Tutorials: pages/training.md
+    - Lecture: pages/lecture.md

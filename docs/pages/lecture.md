@@ -1,0 +1,1 @@
+<iframe id="iframepdf" src="../../lectures/bacterial_genomics_2023.pdf" frameborder="0" width="640" height="480" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe> 
