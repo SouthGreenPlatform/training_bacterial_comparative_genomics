@@ -703,10 +703,11 @@ cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomi
 cd {{extra.project_path}}/training_bcg/pangenome_100xantho
 ```     
 
-Look into the input files gene_presence_absence.csv and traits.txt
+Look into the input files gene_presence_absence.csv and traits.txt  
+
 ```
 more gene_presence_absence.csv
-``
+```
 
 ```
 more traits.txt
@@ -750,7 +751,7 @@ Upload your 6 genomes into the web application and choose the PanACoTA software 
         How many genes are strain-specific of each of the 3 Xoo strains?
 
 
-## **Analyse pangenome with a pangenome graph approach (using minigraph2)**
+## **Construct a pangenome graph (using minigraph2)**
 
 Pangenome analysis based on gene clustering approach will result in a pangene atlas, construction of a presence/absence matrix of genes.  
 
