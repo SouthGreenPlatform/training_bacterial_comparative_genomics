@@ -32,43 +32,6 @@ wget https://panexplorer.southgreen.fr/data/mysample.fastq.gz
     zgrep -c 'barcode=' mysample.fastq.gz
     ```
 
-## **Genome Assembly (from Oxford Nanopore Technologies (ONT) long reads) (using Flye)**
-
-We start by creating and moving into a directory dedicated for the task:
-
-```bash
-mkdir -p {{extra.project_path}}/training_bcg/assembly
-cd {{extra.project_path}}/training_bcg/assembly
-```
-
-We will use Flye to perform the genome assembly.   
-Load the appropriate module for flye (module load) or install the tool locally with conda 
-
-```bash
-conda create -n flye -c bioconda flye
-conda activate flye
-```
-
-We can now run the assembly   
-
-```bash
-flye --nano-raw {{extra.project_path}}/training_bcg/raw_data/mysample.fastq.gz -o assembly >>flye.log 2>&1
-```
-
-As this task is a high time consuming step, we can stop the tool with `CTRL-C` and download the expected output:
-
-```bash
-cp -rf {{extra.project_path}}/training_bcg/training_bacterial_comparative_genomics/data/precomputed_assembly/assembly_precomputed.fasta .
-```
-
-!!! question
-        How many contigs could be assembled from reads?
-
-??? example "Solution"
-    ```bash
-    grep -c ">" assembly_precomputed.fasta
-    ```
-
      
 
 ## **Separate chromosomal and plasmid scaffolds (using MOB-Suite)**
